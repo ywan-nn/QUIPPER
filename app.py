@@ -20,13 +20,15 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS - MERAH TELKOM
+# Custom CSS - MERAH TELKOM dengan Sidebar
 st.markdown("""
 <style>
+    /* Header */
     .main-header {
         font-size: 2.5rem;
         color: #E31E24;
         margin-bottom: 0;
+        font-weight: 700;
     }
     .sub-header {
         font-size: 1.2rem;
@@ -34,80 +36,151 @@ st.markdown("""
         margin-top: -10px;
         margin-bottom: 20px;
     }
+    
+    /* Sidebar Styling - MERAH TELKOM */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
+        padding-top: 20px;
+    }
+    [data-testid="stSidebar"] * {
+        color: white !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox label,
+    [data-testid="stSidebar"] .stSelectbox div,
+    [data-testid="stSidebar"] .stSelectbox span {
+        color: white !important;
+        font-weight: 500;
+    }
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] {
+        background-color: rgba(255,255,255,0.15);
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]:hover {
+        background-color: rgba(255,255,255,0.25);
+    }
+    [data-testid="stSidebar"] h1, 
+    [data-testid="stSidebar"] h2, 
+    [data-testid="stSidebar"] h3 {
+        color: white !important;
+        font-weight: 600;
+    }
+    [data-testid="stSidebar"] .stMarkdown {
+        color: rgba(255,255,255,0.9) !important;
+    }
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255,255,255,0.2);
+    }
+    
+    /* Metric Cards - Elegan */
     .metric-card {
         background: #f8f9fa;
-        padding: 15px;
-        border-radius: 10px;
+        padding: 15px 10px;
+        border-radius: 12px;
         text-align: center;
-        border: 1px solid #E31E24;
-        border-left: 5px solid #E31E24;
+        border: 1px solid #e9ecef;
+        border-bottom: 4px solid #E31E24;
+        transition: all 0.3s ease;
+    }
+    .metric-card:hover {
+        box-shadow: 0 4px 12px rgba(227, 30, 36, 0.15);
+        transform: translateY(-2px);
+    }
+    .metric-label {
+        font-size: 0.85rem;
+        color: #888;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
     .metric-value {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #E31E24;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-top: 4px;
     }
+    .metric-sub {
+        font-size: 0.75rem;
+        color: #999;
+        margin-top: 2px;
+    }
+    
+    /* Risk Colors - JELAS */
     .risk-high {
-        color: #E31E24;
+        color: #E31E24 !important;
     }
     .risk-medium {
-        color: #FF6B00;
+        color: #FF6B00 !important;
     }
     .risk-low {
-        color: #28a745;
+        color: #28a745 !important;
     }
+    
+    /* Buttons */
     .stButton > button {
         background-color: #E31E24;
         color: white;
         border-radius: 8px;
         border: none;
-        padding: 8px 16px;
-        font-weight: bold;
+        padding: 8px 20px;
+        font-weight: 600;
+        transition: all 0.2s ease;
     }
     .stButton > button:hover {
-        background-color: #C41A1F;
+        background-color: #B71C1C;
         color: white;
+        transform: scale(1.02);
     }
-    .css-1d391kg {
-        background-color: #F5F5F5;
-        border-right: 2px solid #E31E24;
-    }
-    .metric-card:hover {
-        box-shadow: 0 4px 12px rgba(227, 30, 36, 0.2);
-        transform: translateY(-2px);
-        transition: all 0.3s ease;
-    }
+    
+    /* Chat Messages */
     .chat-message-user {
         background-color: #f0f0f0;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
         margin: 5px 0;
         border-left: 4px solid #E31E24;
     }
     .chat-message-bot {
         background-color: #fff5f5;
-        padding: 10px;
-        border-radius: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
         margin: 5px 0;
         border-left: 4px solid #28a745;
     }
+    
+    /* Feedback Cards */
     .feedback-positive {
         background-color: #d4edda;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 8px;
         border-left: 4px solid #28a745;
     }
     .feedback-negative {
         background-color: #f8d7da;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 8px;
         border-left: 4px solid #E31E24;
     }
     .feedback-neutral {
         background-color: #fff3cd;
-        padding: 8px;
+        padding: 8px 12px;
         border-radius: 8px;
         border-left: 4px solid #FF6B00;
+    }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #E31E24;
+        border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: #B71C1C;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -159,20 +232,24 @@ def main():
             dropout_predictor.train(df)
         st.success("✅ Model siap digunakan!")
     
-    # Sidebar filters
+    # Sidebar filters - MERAH TELKOM
     st.sidebar.title("🎯 Filter Data")
+    st.sidebar.markdown("---")
     
     # Course filter
     courses = ['All'] + sorted(df['course'].unique().tolist())
-    selected_course = st.sidebar.selectbox("Select Course", courses)
+    selected_course = st.sidebar.selectbox("📚 Select Course", courses)
     
     # Risk level filter
     risk_levels = ['All', 'High', 'Medium', 'Low']
-    selected_risk = st.sidebar.selectbox("Risk Level", risk_levels)
+    selected_risk = st.sidebar.selectbox("⚠️ Risk Level", risk_levels)
     
     # City filter
     cities = ['All'] + sorted(df['city'].unique().tolist())
-    selected_city = st.sidebar.selectbox("City", cities)
+    selected_city = st.sidebar.selectbox("📍 City", cities)
+    
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("💡 **Powered by AI**")
     
     # Apply filters
     filtered_df = df.copy()
@@ -205,25 +282,26 @@ def main():
     with col1:
         st.markdown(f"""
         <div class="metric-card">
-            <div style="font-size:0.9rem; color:#666;">Total Students</div>
+            <div class="metric-label">Total Students</div>
             <div class="metric-value">{total_students}</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        color_class = "risk-high" if high_risk > total_students * 0.3 else ("risk-medium" if high_risk > total_students * 0.15 else "risk-low")
+        # HIGH RISK - WARNA MERAH!
+        color_class = "risk-high"
         st.markdown(f"""
         <div class="metric-card">
-            <div style="font-size:0.9rem; color:#666;">High Risk Students</div>
+            <div class="metric-label">⚠️ High Risk Students</div>
             <div class="metric-value {color_class}">{high_risk}</div>
-            <div style="font-size:0.8rem; color:#666;">{high_risk/total_students*100:.1f}% of total</div>
+            <div class="metric-sub">{high_risk/total_students*100:.1f}% of total</div>
         </div>
         """, unsafe_allow_html=True)
     
     with col3:
         st.markdown(f"""
         <div class="metric-card">
-            <div style="font-size:0.9rem; color:#666;">Average Progress</div>
+            <div class="metric-label">📈 Average Progress</div>
             <div class="metric-value">{avg_progress:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
@@ -231,7 +309,7 @@ def main():
     with col4:
         st.markdown(f"""
         <div class="metric-card">
-            <div style="font-size:0.9rem; color:#666;">Average Quiz Score</div>
+            <div class="metric-label">📝 Average Quiz Score</div>
             <div class="metric-value">{avg_quiz:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
@@ -284,7 +362,7 @@ def main():
         display_df['risk_factors'] = risk_factors[:len(display_df)]
         
         st.dataframe(
-            display_df.style.applymap(
+            display_df.style.map(
                 lambda x: 'color: #E31E24' if isinstance(x, (int, float)) and x > 70 else '',
                 subset=['risk_score']
             ),
@@ -345,7 +423,7 @@ def main():
     
     st.markdown("---")
     
-    # FEEDBACK SUMMARY - PR 3
+    # FEEDBACK SUMMARY
     st.subheader("📝 Student Feedback Summary Report")
     
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
@@ -414,7 +492,7 @@ def main():
                     return 'color: #FF6B00'
             
             st.dataframe(
-                feedback_df.style.applymap(color_sentiment, subset=['Sentiment']),
+                feedback_df.style.map(color_sentiment, subset=['Sentiment']),
                 use_container_width=True,
                 height=300
             )
@@ -500,7 +578,7 @@ def main():
     
     st.markdown("---")
     
-    # ============= CHATBOT ASSISTANT - PR 2 =============
+    # ============= CHATBOT ASSISTANT =============
     st.subheader("🤖 AI Chatbot Assistant")
     
     # Create two columns: chat history and input
