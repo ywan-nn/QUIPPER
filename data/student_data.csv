@@ -1,0 +1,201 @@
+student_id,name,school,city,course,enrollment_date,days_active,total_logins,avg_session_min,num_quizzes,avg_quiz_score,progress_rate,modules_completed,total_modules,forum_posts,assignment_submissions,risk_score,risk_category,dropout_probability,sentiment,sentiment_score,feedback_text,last_activity
+STU0001,Siswa 1,SMA Islam Terpadu,Jakarta,Matematika,2026-04-04 10:05:36.319778,32,78,17.3,14,43.6,10.0,3,30,1,8,27,Low,0.198,positive,1,Materi sangat membantu!,2026-07-10 10:05:36.321194
+STU0002,Siswa 2,SMA Bina Bangsa,Makassar,Bahasa Inggris,2026-06-07 10:05:36.321194,72,181,15.9,13,48.8,65.4,17,26,0,3,24,Low,0.197,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-01 10:05:36.321194
+STU0003,Siswa 3,SMA Bina Bangsa,Yogyakarta,Biologi,2026-03-18 10:05:36.321194,36,89,13.6,15,49.7,47.6,10,21,1,1,22,Low,0.074,negative,-1,Materinya kurang menarik.,2026-07-09 10:05:36.321194
+STU0004,Siswa 4,SMA Negeri 1 Jakarta,Yogyakarta,Biologi,2026-01-27 10:05:36.321194,16,40,58.5,9,53.0,7.1,2,28,0,4,70,High,0.855,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-10 10:05:36.321194
+STU0005,Siswa 5,SMA Islam Terpadu,Jakarta,Matematika,2026-04-16 10:05:36.321194,38,85,59.2,6,51.1,11.5,3,26,0,4,49,Medium,0.554,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-08 10:05:36.321194
+STU0006,Siswa 6,SMA Bina Bangsa,Yogyakarta,Kimia,2026-05-26 10:05:36.321194,78,222,39.9,11,48.8,31.8,7,22,1,7,22,Low,0.117,negative,-1,Materinya kurang menarik.,2026-07-10 10:05:36.321194
+STU0007,Siswa 7,SMA Islam Terpadu,Surabaya,Matematika,2026-04-16 10:05:36.321194,5,9,49.3,9,41.6,38.1,8,21,1,3,58,Medium,0.651,neutral,0,Tugasnya cukup banyak.,2026-07-07 10:05:36.321194
+STU0008,Siswa 8,SMA Islam Terpadu,Medan,Fisika,2026-04-07 10:05:36.321194,18,44,18.6,11,36.9,70.8,17,24,0,6,58,Medium,0.46,neutral,0,Kurang feedback dari mentor.,2026-07-05 10:05:36.321194
+STU0009,Siswa 9,SMA Tunas Muda,Jakarta,Matematika,2026-05-16 10:05:36.321194,20,48,39.5,15,40.7,44.8,13,29,0,1,57,Medium,0.453,negative,-1,Materinya kurang menarik.,2026-07-09 10:05:36.321194
+STU0010,Siswa 10,SMA Cendekia,Jakarta,Matematika,2026-01-27 10:05:36.321194,35,86,47.3,8,40.9,12.5,3,24,3,6,30,Low,0.163,negative,-1,Latihan soalnya terlalu sulit.,2026-07-05 10:05:36.321194
+STU0011,Siswa 11,SMA Bina Bangsa,Makassar,Matematika,2026-03-29 10:05:36.321194,82,193,32.9,6,57.9,16.0,4,25,1,2,42,Medium,0.681,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-04 10:05:36.322192
+STU0012,Siswa 12,SMA Al-Azhar,Medan,Matematika,2026-05-16 10:05:36.322192,47,136,53.3,15,39.2,39.1,9,23,0,0,52,Medium,0.651,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-02 10:05:36.322192
+STU0013,Siswa 13,SMA Tunas Muda,Jakarta,Bahasa Inggris,2026-05-12 10:05:36.322192,17,35,41.3,11,49.5,20.8,5,24,0,8,69,Medium,0.469,neutral,0,Kurang feedback dari mentor.,2026-07-02 10:05:36.322192
+STU0014,Siswa 14,SMA Al-Azhar,Medan,Kimia,2026-02-21 10:05:36.322192,67,180,29.8,6,51.4,33.3,7,21,0,5,20,Low,0.197,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-13 10:05:36.322192
+STU0015,Siswa 15,SMA Negeri 1 Jakarta,Yogyakarta,Matematika,2026-04-16 10:05:36.322192,9,25,54.8,8,50.0,7.1,2,28,0,3,73,High,0.867,negative,-1,Penjelasannya kurang detail.,2026-07-02 10:05:36.322192
+STU0016,Siswa 16,SMA Cendekia,Makassar,Biologi,2026-04-12 10:05:36.322192,61,164,49.4,6,58.4,14.3,3,21,1,6,36,Low,0.156,positive,1,Materi sangat membantu!,2026-07-03 10:05:36.322192
+STU0017,Siswa 17,SMA Islam Terpadu,Yogyakarta,Matematika,2026-05-29 10:05:36.322192,52,131,45.1,15,54.3,13.0,3,23,1,3,31,Low,0.184,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-09 10:05:36.322192
+STU0018,Siswa 18,SMA Tunas Muda,Bandung,Matematika,2026-02-20 10:05:36.322192,71,191,10.4,13,40.7,85.0,17,20,1,1,7,Low,0.092,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-06-30 10:05:36.322192
+STU0019,Siswa 19,SMA Tunas Muda,Jakarta,Fisika,2026-03-08 10:05:36.322192,1,1,59.2,7,57.9,58.3,14,24,1,6,47,Medium,0.565,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-09 10:05:36.322192
+STU0020,Siswa 20,SMA Bina Bangsa,Jakarta,Bahasa Inggris,2026-01-26 10:05:36.322192,8,12,46.1,3,44.1,3.4,1,29,1,7,71,High,0.93,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-05 10:05:36.322192
+STU0021,Siswa 21,SMA Negeri 1 Jakarta,Bandung,Matematika,2026-05-27 10:05:36.322192,87,206,52.4,9,41.5,10.3,3,29,0,3,53,Medium,0.538,positive,1,Platformnya user friendly dan interaktif.,2026-07-03 10:05:36.322192
+STU0022,Siswa 22,SMA Cendekia,Makassar,Bahasa Inggris,2026-03-25 10:05:36.322192,34,90,16.2,14,65.6,43.5,10,23,0,4,22,Low,0.083,neutral,0,Tugasnya cukup banyak.,2026-07-08 10:05:36.322192
+STU0023,Siswa 23,SMA Negeri 1 Jakarta,Jakarta,Biologi,2026-01-20 10:05:36.322192,13,31,9.0,6,51.2,66.7,16,24,0,2,51,Medium,0.652,negative,-1,Latihan soalnya terlalu sulit.,2026-07-09 10:05:36.322192
+STU0024,Siswa 24,SMA Bina Bangsa,Medan,Bahasa Inggris,2026-03-28 10:05:36.322192,79,186,59.1,15,52.2,71.4,20,28,0,0,37,Low,0.125,neutral,0,Kurang feedback dari mentor.,2026-07-09 10:05:36.322192
+STU0025,Siswa 25,SMA Negeri 1 Jakarta,Jakarta,Bahasa Inggris,2026-05-05 10:05:36.322192,35,96,20.5,6,63.0,43.5,10,23,0,4,26,Low,0.172,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-12 10:05:36.322192
+STU0026,Siswa 26,SMA Islam Terpadu,Medan,Kimia,2026-06-02 10:05:36.322192,1,2,23.3,5,57.1,83.3,20,24,1,2,44,Medium,0.521,positive,1,Materi sangat membantu!,2026-07-12 10:05:36.322192
+STU0027,Siswa 27,SMA Negeri 1 Jakarta,Yogyakarta,Fisika,2026-01-25 10:05:36.322192,5,7,50.9,12,58.7,77.3,17,22,0,6,44,Medium,0.317,neutral,0,"Belum ada perkembangan, masih sama.",2026-06-29 10:05:36.322192
+STU0028,Siswa 28,SMA Al-Azhar,Bandung,Fisika,2026-05-18 10:05:36.322192,46,108,47.9,9,59.9,86.4,19,22,0,3,15,Low,0.294,negative,-1,"Sering buffering, mengganggu fokus.",2026-07-13 10:05:36.322192
+STU0029,Siswa 29,SMA Bina Bangsa,Yogyakarta,Kimia,2026-02-28 10:05:36.322192,86,203,52.5,15,56.0,29.2,7,24,1,2,28,Low,0.146,positive,1,Platformnya user friendly dan interaktif.,2026-07-10 10:05:36.322192
+STU0030,Siswa 30,SMA Bina Bangsa,Medan,Kimia,2026-03-27 10:05:36.322192,30,67,17.3,13,48.6,23.1,6,26,0,5,43,Medium,0.646,negative,-1,Latihan soalnya terlalu sulit.,2026-07-08 10:05:36.322192
+STU0031,Siswa 31,SMA Islam Terpadu,Makassar,Biologi,2026-01-27 10:05:36.322192,43,114,56.7,4,43.6,36.4,8,22,2,4,11,Low,0.077,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-07 10:05:36.322192
+STU0032,Siswa 32,SMA Cendekia,Makassar,Matematika,2026-03-07 10:05:36.322192,74,196,15.5,3,31.6,65.0,13,20,2,8,32,Low,0.222,negative,-1,Penjelasannya kurang detail.,2026-07-08 10:05:36.322192
+STU0033,Siswa 33,SMA Tunas Muda,Jakarta,Kimia,2026-03-25 10:05:36.322192,85,205,51.6,14,52.1,32.1,9,28,1,4,23,Low,0.132,neutral,0,Kurang feedback dari mentor.,2026-07-10 10:05:36.322192
+STU0034,Siswa 34,SMA Tunas Muda,Yogyakarta,Biologi,2026-04-30 10:05:36.322192,79,193,36.3,9,63.6,85.0,17,20,0,4,9,Low,0.103,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-06 10:05:36.322192
+STU0035,Siswa 35,SMA Tunas Muda,Medan,Fisika,2026-02-03 10:05:36.322192,61,142,48.7,15,43.7,16.7,5,30,1,1,34,Low,0.179,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-12 10:05:36.323192
+STU0036,Siswa 36,SMA Bina Bangsa,Yogyakarta,Kimia,2026-04-17 10:05:36.323192,26,57,13.1,3,42.6,25.9,7,27,1,1,54,Medium,0.466,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-02 10:05:36.323192
+STU0037,Siswa 37,SMA Islam Terpadu,Medan,Biologi,2026-03-03 10:05:36.323192,32,87,13.1,14,64.4,0.0,0,21,0,6,32,Low,0.094,negative,-1,Materinya kurang menarik.,2026-07-06 10:05:36.323192
+STU0038,Siswa 38,SMA Negeri 1 Jakarta,Makassar,Fisika,2026-05-13 10:05:36.323192,59,132,12.3,10,37.2,57.1,16,28,0,5,39,Low,0.203,neutral,0,Tugasnya cukup banyak.,2026-06-30 10:05:36.323192
+STU0039,Siswa 39,SMA Cendekia,Medan,Fisika,2026-02-12 10:05:36.323192,58,157,19.3,6,48.4,83.3,20,24,1,8,15,Low,0.207,positive,1,Materi sangat membantu!,2026-07-02 10:05:36.323192
+STU0040,Siswa 40,SMA Al-Azhar,Bandung,Kimia,2026-03-20 10:05:36.323192,41,87,54.1,4,51.5,18.2,4,22,1,3,37,Low,0.223,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-07 10:05:36.323192
+STU0041,Siswa 41,SMA Tunas Muda,Surabaya,Bahasa Inggris,2026-02-14 10:05:36.323192,54,136,8.4,9,45.4,41.4,12,29,1,0,28,Low,0.145,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-09 10:05:36.323192
+STU0042,Siswa 42,SMA Tunas Muda,Medan,Bahasa Inggris,2026-01-25 10:05:36.323192,78,186,54.4,10,49.9,29.2,7,24,0,6,50,Medium,0.312,neutral,0,Tugasnya cukup banyak.,2026-07-02 10:05:36.323192
+STU0043,Siswa 43,SMA Bina Bangsa,Medan,Fisika,2026-01-28 10:05:36.323192,4,12,54.9,12,51.4,60.0,18,30,0,0,52,Medium,0.557,neutral,0,Tugasnya cukup banyak.,2026-07-11 10:05:36.323192
+STU0044,Siswa 44,SMA Negeri 1 Jakarta,Surabaya,Biologi,2026-03-22 10:05:36.323192,28,74,30.0,8,36.7,50.0,12,24,0,6,48,Medium,0.634,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-13 10:05:36.323192
+STU0045,Siswa 45,SMA Al-Azhar,Bandung,Matematika,2026-06-03 10:05:36.323192,4,10,57.2,6,63.1,0.0,0,29,0,2,62,Medium,0.35,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-10 10:05:36.323192
+STU0046,Siswa 46,SMA Tunas Muda,Yogyakarta,Kimia,2026-03-11 10:05:36.323192,22,47,38.3,14,53.4,13.6,3,22,0,4,53,Medium,0.531,negative,-1,Materinya kurang menarik.,2026-07-03 10:05:36.323192
+STU0047,Siswa 47,SMA Tunas Muda,Medan,Fisika,2026-05-25 10:05:36.323192,76,192,43.0,13,47.2,33.3,7,21,0,4,39,Low,0.251,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-08 10:05:36.323192
+STU0048,Siswa 48,SMA Cendekia,Medan,Kimia,2026-05-27 10:05:36.323192,65,171,40.6,3,65.2,48.1,13,27,0,1,33,Low,0.29,neutral,0,Tugasnya cukup banyak.,2026-07-02 10:05:36.323192
+STU0049,Siswa 49,SMA Bina Bangsa,Medan,Fisika,2026-01-31 10:05:36.323192,84,201,19.9,15,51.3,63.0,17,27,0,7,23,Low,0.256,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-06-30 10:05:36.323192
+STU0050,Siswa 50,SMA Bina Bangsa,Jakarta,Kimia,2026-02-18 10:05:36.323192,32,90,46.3,12,56.8,63.3,19,30,1,6,10,Low,0.057,negative,-1,Penjelasannya kurang detail.,2026-07-06 10:05:36.323192
+STU0051,Siswa 51,SMA Bina Bangsa,Surabaya,Kimia,2026-03-18 10:05:36.323192,36,94,53.4,14,43.6,28.6,8,28,0,0,61,Medium,0.679,neutral,0,Tugasnya cukup banyak.,2026-07-06 10:05:36.323192
+STU0052,Siswa 52,SMA Cendekia,Bandung,Biologi,2026-02-08 10:05:36.323192,58,145,48.6,4,59.0,39.1,9,23,0,6,27,Low,0.127,neutral,0,Tugasnya cukup banyak.,2026-07-05 10:05:36.323192
+STU0053,Siswa 53,SMA Cendekia,Surabaya,Biologi,2026-01-24 10:05:36.323192,43,118,24.3,10,46.5,33.3,8,24,0,4,27,Low,0.08,positive,1,Materi sangat membantu!,2026-07-02 10:05:36.323192
+STU0054,Siswa 54,SMA Cendekia,Yogyakarta,Fisika,2026-04-25 10:05:36.323192,28,83,45.6,7,48.9,64.3,18,28,0,4,28,Low,0.258,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-11 10:05:36.323192
+STU0055,Siswa 55,SMA Al-Azhar,Jakarta,Bahasa Inggris,2026-05-12 10:05:36.323192,36,96,7.5,3,71.8,70.8,17,24,1,2,10,Low,0.267,positive,1,Materi sangat membantu!,2026-07-04 10:05:36.323192
+STU0056,Siswa 56,SMA Al-Azhar,Medan,Biologi,2026-02-21 10:05:36.323192,44,113,15.1,3,36.3,29.6,8,27,0,1,62,Medium,0.46,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-11 10:05:36.323192
+STU0057,Siswa 57,SMA Bina Bangsa,Makassar,Kimia,2026-05-23 10:05:36.323192,32,95,11.5,15,52.8,44.8,13,29,2,3,26,Low,0.145,negative,-1,Latihan soalnya terlalu sulit.,2026-06-30 10:05:36.323192
+STU0058,Siswa 58,SMA Cendekia,Medan,Kimia,2026-01-19 10:05:36.323192,80,192,8.3,14,52.3,13.0,3,23,1,3,33,Low,0.215,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-05 10:05:36.323192
+STU0059,Siswa 59,SMA Negeri 1 Jakarta,Bandung,Matematika,2026-03-01 10:05:36.323192,58,125,42.9,10,42.1,45.0,9,20,0,3,29,Low,0.227,neutral,0,Tugasnya cukup banyak.,2026-07-12 10:05:36.323192
+STU0060,Siswa 60,SMA Islam Terpadu,Bandung,Kimia,2026-01-14 10:05:36.323192,85,220,49.2,6,60.1,61.9,13,21,0,8,7,Low,0.212,negative,-1,Penjelasannya kurang detail.,2026-07-12 10:05:36.324192
+STU0061,Siswa 61,SMA Negeri 1 Jakarta,Bandung,Kimia,2026-01-19 10:05:36.324192,37,86,29.2,10,46.2,34.6,9,26,0,4,36,Low,0.185,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-13 10:05:36.324192
+STU0062,Siswa 62,SMA Tunas Muda,Yogyakarta,Kimia,2026-04-10 10:05:36.324192,4,11,10.0,13,57.1,62.1,18,29,0,0,58,Medium,0.53,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-06 10:05:36.324192
+STU0063,Siswa 63,SMA Cendekia,Yogyakarta,Biologi,2026-04-03 10:05:36.324192,24,58,59.8,9,49.2,74.1,20,27,0,1,50,Medium,0.439,neutral,0,"Belum ada perkembangan, masih sama.",2026-06-30 10:05:36.324192
+STU0064,Siswa 64,SMA Bina Bangsa,Surabaya,Biologi,2026-02-07 10:05:36.324192,37,89,41.4,9,59.4,85.0,17,20,1,7,2,Low,0.129,positive,1,Platformnya user friendly dan interaktif.,2026-06-30 10:05:36.324192
+STU0065,Siswa 65,SMA Cendekia,Jakarta,Bahasa Inggris,2026-02-15 10:05:36.324192,53,118,8.0,11,56.3,37.9,11,29,1,7,30,Low,0.161,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-05 10:05:36.324192
+STU0066,Siswa 66,SMA Bina Bangsa,Surabaya,Biologi,2026-02-09 10:05:36.324192,16,43,6.6,13,55.7,82.6,19,23,2,2,24,Low,0.188,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-10 10:05:36.324192
+STU0067,Siswa 67,SMA Negeri 1 Jakarta,Medan,Matematika,2026-05-05 10:05:36.324192,64,150,56.3,7,63.7,66.7,16,24,0,6,15,Low,0.295,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-11 10:05:36.324192
+STU0068,Siswa 68,SMA Tunas Muda,Bandung,Bahasa Inggris,2026-02-03 10:05:36.324192,18,46,52.5,7,56.0,52.0,13,25,1,8,23,Low,0.255,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-06-30 10:05:36.324192
+STU0069,Siswa 69,SMA Cendekia,Makassar,Biologi,2026-05-06 10:05:36.324192,58,135,34.6,8,47.5,35.7,10,28,0,8,32,Low,0.164,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-02 10:05:36.324192
+STU0070,Siswa 70,SMA Bina Bangsa,Makassar,Biologi,2026-04-15 10:05:36.324192,53,139,7.4,14,39.1,57.7,15,26,0,6,45,Medium,0.692,positive,1,Materi sangat membantu!,2026-07-11 10:05:36.324192
+STU0071,Siswa 71,SMA Cendekia,Makassar,Kimia,2026-05-19 10:05:36.324192,57,139,10.5,10,50.0,0.0,0,22,0,6,55,Medium,0.688,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-08 10:05:36.324192
+STU0072,Siswa 72,SMA Cendekia,Yogyakarta,Biologi,2026-05-24 10:05:36.324192,43,105,51.9,11,44.2,48.0,12,25,2,7,27,Low,0.059,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-10 10:05:36.324192
+STU0073,Siswa 73,SMA Islam Terpadu,Jakarta,Biologi,2026-05-19 10:05:36.324192,82,220,43.7,4,55.9,63.6,14,22,0,4,10,Low,0.061,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-08 10:05:36.324192
+STU0074,Siswa 74,SMA Al-Azhar,Medan,Fisika,2026-04-12 10:05:36.324192,68,174,27.7,13,44.4,22.7,5,22,1,2,27,Low,0.202,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-06 10:05:36.324192
+STU0075,Siswa 75,SMA Cendekia,Bandung,Fisika,2026-02-15 10:05:36.324192,82,185,19.0,7,42.1,0.0,0,27,0,4,52,Medium,0.363,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-04 10:05:36.324192
+STU0076,Siswa 76,SMA Al-Azhar,Yogyakarta,Biologi,2026-04-10 10:05:36.324192,59,149,51.5,6,50.1,44.4,12,27,1,1,17,Low,0.145,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-02 10:05:36.324192
+STU0077,Siswa 77,SMA Al-Azhar,Jakarta,Biologi,2026-04-04 10:05:36.324192,2,6,36.1,13,59.5,3.4,1,29,0,7,74,High,0.894,negative,-1,Latihan soalnya terlalu sulit.,2026-07-10 10:05:36.324192
+STU0078,Siswa 78,SMA Islam Terpadu,Bandung,Bahasa Inggris,2026-04-10 10:05:36.324192,87,205,46.6,15,56.2,13.3,4,30,1,1,45,Medium,0.559,neutral,0,Tugasnya cukup banyak.,2026-07-13 10:05:36.324192
+STU0079,Siswa 79,SMA Cendekia,Surabaya,Fisika,2026-05-21 10:05:36.324192,38,111,23.0,9,42.0,21.7,5,23,1,2,42,Medium,0.651,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-06-30 10:05:36.324192
+STU0080,Siswa 80,SMA Bina Bangsa,Surabaya,Biologi,2026-03-30 10:05:36.324192,44,121,49.2,10,39.8,9.1,2,22,0,3,62,Medium,0.687,negative,-1,Latihan soalnya terlalu sulit.,2026-07-12 10:05:36.324192
+STU0081,Siswa 81,SMA Tunas Muda,Jakarta,Kimia,2026-01-27 10:05:36.324192,16,38,30.0,13,42.4,27.6,8,29,0,6,70,High,0.935,negative,-1,Penjelasannya kurang detail.,2026-07-06 10:05:36.324192
+STU0082,Siswa 82,SMA Negeri 1 Jakarta,Makassar,Bahasa Inggris,2026-03-22 10:05:36.324192,79,199,17.2,4,69.0,74.1,20,27,1,4,10,Low,0.152,positive,1,Materi sangat membantu!,2026-07-09 10:05:36.324192
+STU0083,Siswa 83,SMA Tunas Muda,Jakarta,Matematika,2026-04-14 10:05:36.324192,69,191,12.5,10,46.7,36.7,11,30,1,8,23,Low,0.197,neutral,0,Tugasnya cukup banyak.,2026-07-03 10:05:36.324192
+STU0084,Siswa 84,SMA Negeri 1 Jakarta,Medan,Bahasa Inggris,2026-03-01 10:05:36.324192,36,109,6.8,8,33.1,22.2,6,27,2,7,47,Medium,0.642,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-05 10:05:36.324192
+STU0085,Siswa 85,SMA Islam Terpadu,Surabaya,Matematika,2026-03-04 10:05:36.324192,36,92,15.4,4,46.1,66.7,14,21,0,3,30,Low,0.21,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-01 10:05:36.325192
+STU0086,Siswa 86,SMA Al-Azhar,Bandung,Fisika,2026-01-20 10:05:36.325192,27,68,8.8,15,54.4,73.9,17,23,0,3,32,Low,0.132,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-13 10:05:36.325192
+STU0087,Siswa 87,SMA Al-Azhar,Bandung,Fisika,2026-01-26 10:05:36.325192,33,99,48.9,4,55.9,0.0,0,22,0,0,56,Medium,0.616,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-13 10:05:36.325192
+STU0088,Siswa 88,SMA Bina Bangsa,Surabaya,Matematika,2026-05-12 10:05:36.325192,54,134,33.9,14,55.6,7.4,2,27,0,7,46,Medium,0.505,neutral,0,Kurang feedback dari mentor.,2026-07-04 10:05:36.325192
+STU0089,Siswa 89,SMA Negeri 1 Jakarta,Yogyakarta,Bahasa Inggris,2026-03-28 10:05:36.325192,59,157,40.4,3,53.0,3.7,1,27,1,6,38,Low,0.222,positive,1,Platformnya user friendly dan interaktif.,2026-07-12 10:05:36.325192
+STU0090,Siswa 90,SMA Negeri 1 Jakarta,Surabaya,Bahasa Inggris,2026-05-07 10:05:36.325192,9,17,11.9,12,50.8,69.0,20,29,0,8,50,Medium,0.452,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-06 10:05:36.325192
+STU0091,Siswa 91,SMA Cendekia,Makassar,Biologi,2026-05-19 10:05:36.325192,90,242,11.3,13,43.8,71.4,20,28,0,3,23,Low,0.163,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-06-30 10:05:36.325192
+STU0092,Siswa 92,SMA Tunas Muda,Medan,Biologi,2026-05-20 10:05:36.325192,41,133,28.5,13,52.2,32.0,8,25,1,2,25,Low,0.067,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-07 10:05:36.325192
+STU0093,Siswa 93,SMA Negeri 1 Jakarta,Yogyakarta,Kimia,2026-05-11 10:05:36.325192,72,159,8.3,11,54.2,68.0,17,25,1,1,13,Low,0.138,neutral,0,Tugasnya cukup banyak.,2026-06-30 10:05:36.325192
+STU0094,Siswa 94,SMA Islam Terpadu,Jakarta,Kimia,2026-03-26 10:05:36.325192,46,129,10.7,11,50.2,27.3,6,22,0,7,42,Medium,0.639,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-12 10:05:36.325192
+STU0095,Siswa 95,SMA Al-Azhar,Makassar,Fisika,2026-02-24 10:05:36.325192,72,197,58.6,12,38.4,63.3,19,30,0,8,25,Low,0.202,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-13 10:05:36.325192
+STU0096,Siswa 96,SMA Bina Bangsa,Surabaya,Kimia,2026-03-19 10:05:36.325192,45,122,5.3,5,45.7,60.0,18,30,1,6,2,Low,0.085,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-12 10:05:36.325192
+STU0097,Siswa 97,SMA Islam Terpadu,Makassar,Fisika,2026-03-09 10:05:36.325192,54,140,30.0,5,31.7,45.8,11,24,2,5,43,Medium,0.538,negative,-1,Penjelasannya kurang detail.,2026-07-11 10:05:36.325192
+STU0098,Siswa 98,SMA Cendekia,Jakarta,Matematika,2026-04-05 10:05:36.325192,57,138,41.4,10,55.7,70.4,19,27,0,6,18,Low,0.104,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-07 10:05:36.325192
+STU0099,Siswa 99,SMA Negeri 1 Jakarta,Surabaya,Bahasa Inggris,2026-02-09 10:05:36.325192,68,165,41.7,3,60.4,26.9,7,26,0,0,35,Low,0.101,negative,-1,Penjelasannya kurang detail.,2026-07-01 10:05:36.325192
+STU0100,Siswa 100,SMA Al-Azhar,Surabaya,Kimia,2026-05-14 10:05:36.325192,1,5,32.4,9,44.1,22.7,5,22,0,6,82,High,0.876,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-12 10:05:36.325192
+STU0101,Siswa 101,SMA Tunas Muda,Yogyakarta,Matematika,2026-02-22 10:05:36.325192,3,7,30.3,4,28.3,34.5,10,29,0,6,83,High,0.801,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-12 10:05:36.325192
+STU0102,Siswa 102,SMA Tunas Muda,Jakarta,Kimia,2026-05-01 10:05:36.325192,80,229,30.3,14,37.9,52.4,11,21,1,6,18,Low,0.111,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-07 10:05:36.325192
+STU0103,Siswa 103,SMA Al-Azhar,Yogyakarta,Kimia,2026-04-18 10:05:36.325192,43,91,47.9,4,38.2,53.3,16,30,0,1,51,Medium,0.504,negative,-1,Latihan soalnya terlalu sulit.,2026-07-08 10:05:36.325192
+STU0104,Siswa 104,SMA Islam Terpadu,Yogyakarta,Fisika,2026-04-14 10:05:36.325192,14,31,13.1,6,56.4,17.2,5,29,0,2,70,High,0.719,positive,1,Platformnya user friendly dan interaktif.,2026-07-06 10:05:36.325192
+STU0105,Siswa 105,SMA Cendekia,Makassar,Biologi,2026-01-20 10:05:36.325192,83,204,39.9,12,51.4,33.3,10,30,2,5,14,Low,0.16,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-01 10:05:36.325192
+STU0106,Siswa 106,SMA Al-Azhar,Makassar,Matematika,2026-03-15 10:05:36.325192,65,157,9.1,10,56.7,70.0,14,20,2,0,11,Low,0.258,positive,1,Materi sangat membantu!,2026-07-04 10:05:36.325192
+STU0107,Siswa 107,SMA Cendekia,Makassar,Biologi,2026-02-15 10:05:36.325192,75,204,35.5,15,53.5,3.7,1,27,2,3,35,Low,0.201,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-06 10:05:36.325192
+STU0108,Siswa 108,SMA Negeri 1 Jakarta,Surabaya,Matematika,2026-02-04 10:05:36.325192,83,242,14.5,6,63.1,51.9,14,27,1,8,6,Low,0.202,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-07 10:05:36.325192
+STU0109,Siswa 109,SMA Tunas Muda,Surabaya,Bahasa Inggris,2026-05-31 10:05:36.325192,81,220,40.6,4,56.9,47.6,10,21,1,8,22,Low,0.121,neutral,0,Kurang feedback dari mentor.,2026-07-08 10:05:36.325192
+STU0110,Siswa 110,SMA Negeri 1 Jakarta,Makassar,Fisika,2026-03-16 10:05:36.325192,40,93,58.2,14,50.8,54.5,12,22,3,1,9,Low,0.19,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-06-30 10:05:36.326192
+STU0111,Siswa 111,SMA Bina Bangsa,Yogyakarta,Bahasa Inggris,2026-05-21 10:05:36.326192,83,201,41.9,11,39.3,55.0,11,20,1,5,24,Low,0.095,positive,1,Platformnya user friendly dan interaktif.,2026-07-10 10:05:36.326192
+STU0112,Siswa 112,SMA Bina Bangsa,Bandung,Fisika,2026-05-25 10:05:36.326192,38,103,51.4,4,52.1,57.1,16,28,1,8,1,Low,0.215,negative,-1,Materinya kurang menarik.,2026-07-11 10:05:36.326192
+STU0113,Siswa 113,SMA Cendekia,Medan,Fisika,2026-05-03 10:05:36.326192,24,71,50.7,15,48.9,86.4,19,22,0,7,26,Low,0.153,neutral,0,Kurang feedback dari mentor.,2026-07-06 10:05:36.326192
+STU0114,Siswa 114,SMA Cendekia,Surabaya,Biologi,2026-04-15 10:05:36.326192,69,172,18.2,15,48.3,65.2,15,23,1,5,18,Low,0.296,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-01 10:05:36.326192
+STU0115,Siswa 115,SMA Tunas Muda,Makassar,Bahasa Inggris,2026-02-26 10:05:36.326192,21,54,49.9,15,47.5,86.4,19,22,0,4,26,Low,0.21,negative,-1,Materinya kurang menarik.,2026-06-29 10:05:36.326192
+STU0116,Siswa 116,SMA Negeri 1 Jakarta,Yogyakarta,Bahasa Inggris,2026-05-13 10:05:36.326192,37,90,9.6,5,50.7,29.6,8,27,0,8,39,Low,0.258,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-06-30 10:05:36.326192
+STU0117,Siswa 117,SMA Tunas Muda,Surabaya,Matematika,2026-02-27 10:05:36.326192,7,24,26.8,8,55.7,26.9,7,26,0,1,86,High,0.756,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-06-30 10:05:36.326192
+STU0118,Siswa 118,SMA Islam Terpadu,Yogyakarta,Kimia,2026-05-07 10:05:36.326192,18,56,7.1,10,55.9,14.8,4,27,0,7,69,Medium,0.302,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-10 10:05:36.326192
+STU0119,Siswa 119,SMA Bina Bangsa,Makassar,Bahasa Inggris,2026-01-29 10:05:36.326192,55,141,11.1,7,45.9,29.2,7,24,1,1,26,Low,0.11,neutral,0,Tugasnya cukup banyak.,2026-07-12 10:05:36.326192
+STU0120,Siswa 120,SMA Negeri 1 Jakarta,Medan,Bahasa Inggris,2026-01-27 10:05:36.326192,3,6,39.8,12,55.3,31.8,7,22,0,4,63,Medium,0.301,neutral,0,Tugasnya cukup banyak.,2026-07-11 10:05:36.326192
+STU0121,Siswa 121,SMA Islam Terpadu,Yogyakarta,Matematika,2026-01-30 10:05:36.326192,47,113,8.7,11,42.2,60.7,17,28,1,8,17,Low,0.055,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-03 10:05:36.326192
+STU0122,Siswa 122,SMA Tunas Muda,Surabaya,Kimia,2026-06-09 10:05:36.326192,46,127,48.4,8,56.6,23.3,7,30,1,1,43,Medium,0.594,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-08 10:05:36.326192
+STU0123,Siswa 123,SMA Cendekia,Surabaya,Fisika,2026-02-15 10:05:36.326192,90,213,31.3,5,50.6,19.0,4,21,3,7,26,Low,0.123,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-06-29 10:05:36.326192
+STU0124,Siswa 124,SMA Negeri 1 Jakarta,Surabaya,Kimia,2026-02-02 10:05:36.326192,51,128,59.4,11,47.6,62.5,15,24,0,0,40,Medium,0.376,neutral,0,"Belum ada perkembangan, masih sama.",2026-06-30 10:05:36.326192
+STU0125,Siswa 125,SMA Islam Terpadu,Surabaya,Kimia,2026-05-13 10:05:36.326192,48,122,29.0,9,53.9,53.8,14,26,1,5,5,Low,0.174,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-09 10:05:36.326192
+STU0126,Siswa 126,SMA Negeri 1 Jakarta,Yogyakarta,Biologi,2026-05-24 10:05:36.326192,56,139,38.1,5,49.8,70.8,17,24,0,5,13,Low,0.07,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-06 10:05:36.326192
+STU0127,Siswa 127,SMA Cendekia,Yogyakarta,Biologi,2026-05-02 10:05:36.326192,89,222,29.4,10,60.8,4.0,1,25,1,6,23,Low,0.21,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-12 10:05:36.326192
+STU0128,Siswa 128,SMA Islam Terpadu,Yogyakarta,Biologi,2026-03-12 10:05:36.326192,66,155,49.1,13,46.2,25.0,5,20,0,2,54,Medium,0.571,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-12 10:05:36.326192
+STU0129,Siswa 129,SMA Bina Bangsa,Yogyakarta,Kimia,2026-03-13 10:05:36.326192,50,138,57.2,3,64.7,86.4,19,22,0,7,11,Low,0.143,neutral,0,Kurang feedback dari mentor.,2026-07-05 10:05:36.326192
+STU0130,Siswa 130,SMA Al-Azhar,Medan,Kimia,2026-04-03 10:05:36.326192,32,63,57.8,3,63.4,18.5,5,27,1,8,27,Low,0.278,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-02 10:05:36.326192
+STU0131,Siswa 131,SMA Tunas Muda,Bandung,Bahasa Inggris,2026-04-01 10:05:36.326192,89,227,55.4,10,45.5,28.6,6,21,0,2,37,Low,0.163,negative,-1,"Sering buffering, mengganggu fokus.",2026-07-12 10:05:36.326192
+STU0132,Siswa 132,SMA Islam Terpadu,Surabaya,Kimia,2026-05-28 10:05:36.326192,71,151,34.8,7,47.0,16.7,5,30,0,2,46,Medium,0.504,neutral,0,Kurang feedback dari mentor.,2026-07-01 10:05:36.326192
+STU0133,Siswa 133,SMA Bina Bangsa,Bandung,Biologi,2026-06-07 10:05:36.326192,47,131,35.5,8,57.6,50.0,14,28,2,2,19,Low,0.271,positive,1,Platformnya user friendly dan interaktif.,2026-07-02 10:05:36.326192
+STU0134,Siswa 134,SMA Islam Terpadu,Medan,Bahasa Inggris,2026-02-28 10:05:36.326192,53,106,50.3,4,81.0,16.0,4,25,0,1,49,Medium,0.486,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-06-29 10:05:36.326192
+STU0135,Siswa 135,SMA Cendekia,Yogyakarta,Bahasa Inggris,2026-04-28 10:05:36.326192,17,42,28.8,3,71.5,10.7,3,28,0,2,49,Medium,0.366,neutral,0,Kurang feedback dari mentor.,2026-07-08 10:05:36.327192
+STU0136,Siswa 136,SMA Cendekia,Surabaya,Matematika,2026-04-10 10:05:36.327192,26,64,39.9,11,37.5,36.4,8,22,1,4,59,Medium,0.513,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-04 10:05:36.327192
+STU0137,Siswa 137,SMA Cendekia,Bandung,Fisika,2026-03-19 10:05:36.327192,73,182,7.3,3,67.6,10.0,2,20,0,4,45,Medium,0.384,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-03 10:05:36.327192
+STU0138,Siswa 138,SMA Negeri 1 Jakarta,Medan,Bahasa Inggris,2026-03-31 10:05:36.327192,83,215,57.6,10,50.8,23.3,7,30,0,6,44,Medium,0.481,positive,1,Penyampaiannya jelas dan mudah dipahami.,2026-07-06 10:05:36.327192
+STU0139,Siswa 139,SMA Tunas Muda,Medan,Biologi,2026-04-22 10:05:36.327192,44,95,38.4,8,61.7,40.0,10,25,0,6,14,Low,0.24,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-08 10:05:36.327192
+STU0140,Siswa 140,SMA Bina Bangsa,Medan,Matematika,2026-04-06 10:05:36.327192,58,125,18.6,4,51.9,4.2,1,24,0,6,54,Medium,0.467,negative,-1,Penjelasannya kurang detail.,2026-06-30 10:05:36.327192
+STU0141,Siswa 141,SMA Al-Azhar,Makassar,Kimia,2026-04-26 10:05:36.327192,21,73,32.4,11,54.4,51.9,14,27,0,4,40,Medium,0.309,negative,-1,Materinya kurang menarik.,2026-07-06 10:05:36.327192
+STU0142,Siswa 142,SMA Bina Bangsa,Bandung,Bahasa Inggris,2026-03-15 10:05:36.327192,7,16,7.8,10,61.0,63.3,19,30,1,7,29,Low,0.184,negative,-1,"Sering buffering, mengganggu fokus.",2026-07-11 10:05:36.327192
+STU0143,Siswa 143,SMA Al-Azhar,Yogyakarta,Kimia,2026-03-02 10:05:36.327192,47,107,7.5,3,45.8,64.3,18,28,0,3,21,Low,0.188,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-06 10:05:36.327192
+STU0144,Siswa 144,SMA Cendekia,Surabaya,Bahasa Inggris,2026-05-14 10:05:36.327192,17,50,58.6,9,65.2,44.0,11,25,1,8,26,Low,0.239,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-07 10:05:36.327192
+STU0145,Siswa 145,SMA Cendekia,Jakarta,Matematika,2026-06-04 10:05:36.327192,18,39,44.2,15,55.7,53.6,15,28,0,7,29,Low,0.202,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-06-29 10:05:36.327192
+STU0146,Siswa 146,SMA Cendekia,Surabaya,Fisika,2026-03-05 10:05:36.327192,79,210,45.7,7,54.5,72.0,18,25,0,8,26,Low,0.183,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-06 10:05:36.327192
+STU0147,Siswa 147,SMA Negeri 1 Jakarta,Surabaya,Kimia,2026-05-16 10:05:36.327192,54,146,37.1,15,51.8,100.0,20,20,1,7,8,Low,0.292,neutral,0,Kurang feedback dari mentor.,2026-07-02 10:05:36.327192
+STU0148,Siswa 148,SMA Negeri 1 Jakarta,Makassar,Biologi,2026-05-01 10:05:36.327192,68,173,39.6,12,47.1,54.5,12,22,1,3,1,Low,0.193,neutral,0,Kurang feedback dari mentor.,2026-07-13 10:05:36.327192
+STU0149,Siswa 149,SMA Tunas Muda,Surabaya,Biologi,2026-05-06 10:05:36.327192,53,135,43.0,9,49.1,55.2,16,29,1,7,1,Low,0.226,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-03 10:05:36.327192
+STU0150,Siswa 150,SMA Tunas Muda,Makassar,Biologi,2026-03-25 10:05:36.327192,23,46,30.3,11,50.4,35.7,10,28,1,5,45,Medium,0.621,neutral,0,Tugasnya cukup banyak.,2026-07-10 10:05:36.327192
+STU0151,Siswa 151,SMA Bina Bangsa,Surabaya,Bahasa Inggris,2026-03-29 10:05:36.327192,29,77,56.8,7,63.3,39.1,9,23,0,7,35,Low,0.17,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-09 10:05:36.327192
+STU0152,Siswa 152,SMA Negeri 1 Jakarta,Makassar,Bahasa Inggris,2026-03-08 10:05:36.327192,51,132,50.0,15,39.9,16.7,4,24,0,0,69,Medium,0.682,neutral,0,Tugasnya cukup banyak.,2026-07-03 10:05:36.327192
+STU0153,Siswa 153,SMA Al-Azhar,Yogyakarta,Biologi,2026-04-20 10:05:36.327192,26,64,50.5,7,51.3,70.8,17,24,0,2,28,Low,0.204,neutral,0,Kurang feedback dari mentor.,2026-07-13 10:05:36.327192
+STU0154,Siswa 154,SMA Islam Terpadu,Makassar,Fisika,2026-04-15 10:05:36.327192,7,13,10.5,8,59.6,71.4,15,21,0,2,40,Medium,0.686,negative,-1,Penjelasannya kurang detail.,2026-07-07 10:05:36.327192
+STU0155,Siswa 155,SMA Islam Terpadu,Medan,Biologi,2026-04-23 10:05:36.327192,37,88,22.7,13,50.1,4.8,1,21,0,3,52,Medium,0.595,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-06-29 10:05:36.327192
+STU0156,Siswa 156,SMA Bina Bangsa,Medan,Fisika,2026-06-04 10:05:36.327192,51,123,48.3,5,45.4,45.0,9,20,0,0,39,Low,0.192,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-09 10:05:36.327192
+STU0157,Siswa 157,SMA Tunas Muda,Yogyakarta,Bahasa Inggris,2026-01-30 10:05:36.327192,64,157,53.9,5,60.3,59.3,16,27,0,4,6,Low,0.252,positive,1,Platformnya user friendly dan interaktif.,2026-07-03 10:05:36.327192
+STU0158,Siswa 158,SMA Al-Azhar,Yogyakarta,Fisika,2026-06-10 10:05:36.327192,44,110,48.5,12,54.9,27.3,6,22,2,6,38,Low,0.179,positive,1,Materi sangat membantu!,2026-07-11 10:05:36.327192
+STU0159,Siswa 159,SMA Bina Bangsa,Medan,Kimia,2026-04-11 10:05:36.327192,1,2,19.3,6,40.0,58.3,14,24,1,5,39,Low,0.196,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-03 10:05:36.327192
+STU0160,Siswa 160,SMA Al-Azhar,Yogyakarta,Fisika,2026-05-29 10:05:36.327192,86,220,11.5,7,41.2,19.2,5,26,0,8,44,Medium,0.576,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-08 10:05:36.327192
+STU0161,Siswa 161,SMA Cendekia,Bandung,Fisika,2026-05-10 10:05:36.327192,62,163,13.4,14,51.4,76.0,19,25,0,6,27,Low,0.278,neutral,0,Kurang feedback dari mentor.,2026-07-01 10:05:36.327192
+STU0162,Siswa 162,SMA Bina Bangsa,Yogyakarta,Bahasa Inggris,2026-05-24 10:05:36.327192,68,163,29.6,14,45.7,52.4,11,21,0,1,21,Low,0.257,negative,-1,Penjelasannya kurang detail.,2026-07-04 10:05:36.327192
+STU0163,Siswa 163,SMA Cendekia,Bandung,Fisika,2026-03-22 10:05:36.327192,67,163,29.3,13,45.9,20.7,6,29,0,7,37,Low,0.275,positive,1,Materi sangat membantu!,2026-07-06 10:05:36.327192
+STU0164,Siswa 164,SMA Bina Bangsa,Makassar,Biologi,2026-02-17 10:05:36.327192,73,201,8.2,10,47.8,45.0,9,20,0,6,28,Low,0.254,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-13 10:05:36.328393
+STU0165,Siswa 165,SMA Tunas Muda,Surabaya,Matematika,2026-01-26 10:05:36.328393,8,21,56.4,4,56.4,75.0,15,20,0,4,53,Medium,0.372,neutral,0,Tugasnya cukup banyak.,2026-07-08 10:05:36.328393
+STU0166,Siswa 166,SMA Tunas Muda,Medan,Biologi,2026-03-09 10:05:36.328393,11,22,42.6,13,46.4,77.3,17,22,1,5,33,Low,0.095,neutral,0,Kurang feedback dari mentor.,2026-07-02 10:05:36.328393
+STU0167,Siswa 167,SMA Bina Bangsa,Jakarta,Matematika,2026-03-29 10:05:36.328393,60,161,42.0,11,44.5,46.4,13,28,0,6,27,Low,0.112,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-10 10:05:36.328393
+STU0168,Siswa 168,SMA Islam Terpadu,Jakarta,Matematika,2026-02-26 10:05:36.328393,79,217,47.1,3,67.3,30.4,7,23,1,1,3,Low,0.198,positive,1,Materi sangat membantu!,2026-07-10 10:05:36.328393
+STU0169,Siswa 169,SMA Islam Terpadu,Jakarta,Biologi,2026-02-21 10:05:36.328393,30,68,34.7,15,46.8,4.5,1,22,1,8,34,Low,0.109,negative,-1,Materinya kurang menarik.,2026-07-08 10:05:36.328393
+STU0170,Siswa 170,SMA Cendekia,Makassar,Kimia,2026-04-14 10:05:36.328393,39,86,53.2,13,49.4,69.6,16,23,2,6,9,Low,0.119,neutral,0,Kurang feedback dari mentor.,2026-07-03 10:05:36.328393
+STU0171,Siswa 171,SMA Islam Terpadu,Medan,Bahasa Inggris,2026-02-07 10:05:36.328393,7,16,58.5,13,46.3,42.9,12,28,0,5,63,Medium,0.463,neutral,0,Kurang feedback dari mentor.,2026-07-01 10:05:36.328393
+STU0172,Siswa 172,SMA Cendekia,Medan,Fisika,2026-04-17 10:05:36.328393,39,93,52.2,5,51.0,70.0,14,20,0,8,23,Low,0.292,neutral,0,Kurang feedback dari mentor.,2026-07-07 10:05:36.328393
+STU0173,Siswa 173,SMA Bina Bangsa,Surabaya,Fisika,2026-03-21 10:05:36.328393,83,193,9.3,10,61.8,52.4,11,21,0,8,6,Low,0.063,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-04 10:05:36.328393
+STU0174,Siswa 174,SMA Negeri 1 Jakarta,Jakarta,Fisika,2026-01-14 10:05:36.328393,86,235,35.7,10,56.5,24.0,6,25,1,4,25,Low,0.103,positive,1,Materi sangat membantu!,2026-07-02 10:05:36.328393
+STU0175,Siswa 175,SMA Tunas Muda,Bandung,Bahasa Inggris,2026-04-22 10:05:36.328393,51,118,55.3,11,50.4,41.7,10,24,0,6,34,Low,0.183,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-08 10:05:36.328393
+STU0176,Siswa 176,SMA Cendekia,Medan,Biologi,2026-05-19 10:05:36.328393,61,150,46.9,8,45.0,24.0,6,25,1,5,38,Low,0.061,negative,-1,Penjelasannya kurang detail.,2026-07-13 10:05:36.328393
+STU0177,Siswa 177,SMA Al-Azhar,Makassar,Bahasa Inggris,2026-01-16 10:05:36.328393,54,133,21.2,6,46.5,43.5,10,23,1,6,28,Low,0.258,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-09 10:05:36.328393
+STU0178,Siswa 178,SMA Tunas Muda,Yogyakarta,Biologi,2026-02-16 10:05:36.328393,22,64,45.3,8,52.5,22.7,5,22,1,8,55,Medium,0.374,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-07-05 10:05:36.328393
+STU0179,Siswa 179,SMA Negeri 1 Jakarta,Jakarta,Matematika,2026-06-12 10:05:36.328393,53,150,12.6,13,53.9,33.3,7,21,0,2,20,Low,0.105,positive,1,Materi sangat membantu!,2026-07-04 10:05:36.328393
+STU0180,Siswa 180,SMA Islam Terpadu,Yogyakarta,Bahasa Inggris,2026-02-10 10:05:36.328393,85,239,31.8,3,49.3,60.7,17,28,0,6,10,Low,0.054,neutral,0,Materi sudah sesuai dengan kurikulum.,2026-07-13 10:05:36.328393
+STU0181,Siswa 181,SMA Cendekia,Yogyakarta,Biologi,2026-04-29 10:05:36.328393,14,30,55.5,11,54.0,17.4,4,23,0,3,69,Medium,0.511,negative,-1,Latihan soalnya terlalu sulit.,2026-07-01 10:05:36.328393
+STU0182,Siswa 182,SMA Tunas Muda,Jakarta,Kimia,2026-03-02 10:05:36.328393,59,129,36.1,14,50.1,29.2,7,24,0,1,65,Medium,0.697,positive,1,Materi sangat membantu!,2026-07-12 10:05:36.328393
+STU0183,Siswa 183,SMA Tunas Muda,Medan,Biologi,2026-01-23 10:05:36.328393,61,157,8.1,3,65.9,23.8,5,21,0,7,38,Low,0.211,positive,1,Materi sangat membantu!,2026-06-29 10:05:36.328393
+STU0184,Siswa 184,SMA Cendekia,Jakarta,Fisika,2026-04-20 10:05:36.328393,89,207,53.8,10,53.7,40.0,8,20,0,1,38,Low,0.275,neutral,0,"Belum ada perkembangan, masih sama.",2026-07-11 10:05:36.328393
+STU0185,Siswa 185,SMA Al-Azhar,Jakarta,Fisika,2026-01-14 10:05:36.328393,19,52,46.4,14,45.7,57.1,12,21,0,4,30,Low,0.191,neutral,0,Tugasnya cukup banyak.,2026-07-03 10:05:36.328393
+STU0186,Siswa 186,SMA Cendekia,Surabaya,Biologi,2026-05-09 10:05:36.328393,89,228,44.8,11,45.4,55.0,11,20,0,1,33,Low,0.108,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-01 10:05:36.328393
+STU0187,Siswa 187,SMA Cendekia,Makassar,Biologi,2026-03-22 10:05:36.328393,4,14,39.9,15,51.0,51.9,14,27,0,3,51,Medium,0.521,neutral,0,Kurang feedback dari mentor.,2026-07-03 10:05:36.328393
+STU0188,Siswa 188,SMA Cendekia,Yogyakarta,Biologi,2026-05-23 10:05:36.328393,80,204,21.2,6,53.4,9.5,2,21,1,4,29,Low,0.145,neutral,0,Kurang feedback dari mentor.,2026-07-02 10:05:36.328393
+STU0189,Siswa 189,SMA Tunas Muda,Surabaya,Kimia,2026-05-17 10:05:36.328393,12,41,5.3,7,56.3,56.0,14,25,0,4,43,Medium,0.353,neutral,0,Tugasnya cukup banyak.,2026-07-05 10:05:36.328393
+STU0190,Siswa 190,SMA Cendekia,Makassar,Biologi,2026-05-18 10:05:36.328393,4,10,9.9,11,52.8,6.9,2,29,2,5,67,Medium,0.305,positive,1,Materi sangat membantu!,2026-07-02 10:05:36.328393
+STU0191,Siswa 191,SMA Cendekia,Bandung,Bahasa Inggris,2026-01-31 10:05:36.328393,22,49,42.7,5,42.6,16.7,4,24,1,4,48,Medium,0.497,neutral,0,Tugasnya cukup banyak.,2026-07-09 10:05:36.328393
+STU0192,Siswa 192,SMA Tunas Muda,Surabaya,Biologi,2026-05-25 10:05:36.328393,47,106,18.8,6,47.5,74.1,20,27,0,3,24,Low,0.077,positive,1,Platformnya user friendly dan interaktif.,2026-07-08 10:05:36.328393
+STU0193,Siswa 193,SMA Cendekia,Medan,Kimia,2026-02-21 10:05:36.328393,43,123,28.7,13,50.9,86.4,19,22,0,4,20,Low,0.201,neutral,0,Tugasnya cukup banyak.,2026-07-08 10:05:36.328393
+STU0194,Siswa 194,SMA Bina Bangsa,Medan,Kimia,2026-03-31 10:05:36.328393,89,242,39.8,12,46.9,28.0,7,25,0,6,43,Medium,0.627,neutral,0,"Belum ada perkembangan, masih sama.",2026-06-29 10:05:36.328393
+STU0195,Siswa 195,SMA Cendekia,Bandung,Bahasa Inggris,2026-01-25 10:05:36.328393,24,54,42.5,11,55.6,0.0,0,27,3,3,54,Medium,0.619,negative,-1,"Terlalu cepat, saya ketinggalan.",2026-06-30 10:05:36.328393
+STU0196,Siswa 196,SMA Tunas Muda,Yogyakarta,Biologi,2026-05-09 10:05:36.328393,82,212,21.7,7,49.8,15.4,4,26,0,6,37,Low,0.162,neutral,0,Tugasnya cukup banyak.,2026-07-05 10:05:36.328393
+STU0197,Siswa 197,SMA Cendekia,Yogyakarta,Biologi,2026-01-25 10:05:36.328393,5,16,48.5,8,37.2,58.6,17,29,0,1,68,Medium,0.608,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-11 10:05:36.328393
+STU0198,Siswa 198,SMA Islam Terpadu,Makassar,Matematika,2026-01-20 10:05:36.328393,83,196,42.3,9,53.3,38.5,10,26,1,1,10,Low,0.075,positive,1,Saya jadi lebih paham setelah mengikuti kelas ini.,2026-07-05 10:05:36.328393
+STU0199,Siswa 199,SMA Cendekia,Yogyakarta,Bahasa Inggris,2026-04-18 10:05:36.328393,58,149,25.6,10,39.7,64.3,18,28,0,2,36,Low,0.299,positive,1,Latihan soalnya bagus untuk persiapan ujian.,2026-07-07 10:05:36.328393
+STU0200,Siswa 200,SMA Negeri 1 Jakarta,Jakarta,Fisika,2026-03-16 10:05:36.328393,40,100,23.9,15,52.7,21.4,6,28,0,7,46,Medium,0.49,positive,1,Platformnya user friendly dan interaktif.,2026-07-08 10:05:36.328393
