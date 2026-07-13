@@ -6,7 +6,6 @@ build-backend = "setuptools.build_meta"
 name = "quipper-dashboard"
 version = "1.0.0"
 description = "AI Learning Analytics Dashboard for Quipper"
-readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Quipper AI Team"}]
