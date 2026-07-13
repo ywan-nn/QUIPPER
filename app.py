@@ -20,7 +20,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS - MERAH TELKOM dengan Sidebar
+# Custom CSS - MERAH TELKOM
 st.markdown("""
 <style>
     /* Header */
@@ -37,27 +37,33 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
-    /* Sidebar Styling - MERAH TELKOM */
+    /* Sidebar Styling - GELAP dengan teks PUTIH */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
+        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         padding-top: 20px;
     }
     [data-testid="stSidebar"] * {
         color: white !important;
     }
-    [data-testid="stSidebar"] .stSelectbox label,
-    [data-testid="stSidebar"] .stSelectbox div,
-    [data-testid="stSidebar"] .stSelectbox span {
+    [data-testid="stSidebar"] .stSelectbox label {
+        color: #ffffff !important;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    [data-testid="stSidebar"] .stSelectbox div {
         color: white !important;
-        font-weight: 500;
     }
     [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] {
-        background-color: rgba(255,255,255,0.15);
+        background-color: rgba(255,255,255,0.12) !important;
         border-radius: 8px;
-        border: 1px solid rgba(255,255,255,0.3);
+        border: 1px solid rgba(255,255,255,0.2) !important;
+        color: white !important;
     }
     [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]:hover {
-        background-color: rgba(255,255,255,0.25);
+        background-color: rgba(255,255,255,0.2) !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] span {
+        color: white !important;
     }
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
@@ -69,7 +75,7 @@ st.markdown("""
         color: rgba(255,255,255,0.9) !important;
     }
     [data-testid="stSidebar"] hr {
-        border-color: rgba(255,255,255,0.2);
+        border-color: rgba(255,255,255,0.15);
     }
     
     /* Metric Cards - Elegan */
@@ -232,7 +238,7 @@ def main():
             dropout_predictor.train(df)
         st.success("✅ Model siap digunakan!")
     
-    # Sidebar filters - MERAH TELKOM
+    # Sidebar filters - GELAP dengan teks PUTIH
     st.sidebar.title("🎯 Filter Data")
     st.sidebar.markdown("---")
     
@@ -288,12 +294,10 @@ def main():
         """, unsafe_allow_html=True)
     
     with col2:
-        # HIGH RISK - WARNA MERAH!
-        color_class = "risk-high"
         st.markdown(f"""
         <div class="metric-card">
             <div class="metric-label">⚠️ High Risk Students</div>
-            <div class="metric-value {color_class}">{high_risk}</div>
+            <div class="metric-value risk-high">{high_risk}</div>
             <div class="metric-sub">{high_risk/total_students*100:.1f}% of total</div>
         </div>
         """, unsafe_allow_html=True)
@@ -361,9 +365,10 @@ def main():
         display_df = high_risk_students.head(10)[['student_id', 'name', 'course', 'risk_score', 'progress_rate', 'avg_quiz_score', 'days_active']].copy()
         display_df['risk_factors'] = risk_factors[:len(display_df)]
         
+        # TAMPILKAN TABEL DENGAN WARMA - hanya risk_score yang >70 berwarna merah
         st.dataframe(
-            display_df.style.map(
-                lambda x: 'color: #E31E24' if isinstance(x, (int, float)) and x > 70 else '',
+            display_df.style.applymap(
+                lambda x: 'color: #E31E24; font-weight: bold;' if isinstance(x, (int, float)) and x > 70 else '',
                 subset=['risk_score']
             ),
             use_container_width=True
