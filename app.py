@@ -13,7 +13,7 @@ from models.sentiment_analyzer import SentimentAnalyzer
 
 # Page configuration
 st.set_page_config(
-    page_title="Quipper AI Learning Analytics Dashboard",
+    page_title="AILA - AI Learning Analytics Dashboard",
     page_icon="🎓",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -22,6 +22,7 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
 <style>
+    /* Header */
     .main-header {
         font-size: 2.5rem;
         color: #E31E24;
@@ -35,9 +36,12 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
+    /* Sidebar Styling - SCROLLABLE */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
         padding-top: 20px;
+        overflow-y: auto !important;
+        max-height: 100vh !important;
     }
     [data-testid="stSidebar"] .stSelectbox label {
         color: #ffffff !important;
@@ -71,6 +75,7 @@ st.markdown("""
         border-color: rgba(255,255,255,0.15);
     }
     
+    /* Metric Cards */
     .metric-card {
         background: #f8f9fa;
         padding: 15px 10px;
@@ -103,6 +108,7 @@ st.markdown("""
         margin-top: 2px;
     }
     
+    /* Risk Colors */
     .risk-high {
         color: #E31E24 !important;
     }
@@ -113,6 +119,7 @@ st.markdown("""
         color: #28a745 !important;
     }
     
+    /* Buttons */
     .stButton > button {
         background-color: #E31E24;
         color: white;
@@ -128,6 +135,7 @@ st.markdown("""
         transform: scale(1.02);
     }
     
+    /* Feedback Cards */
     .feedback-positive {
         background-color: #d4edda;
         padding: 8px 12px;
@@ -230,17 +238,17 @@ def generate_intervention_message(student, risk_factors):
     return message
 
 def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_students, high_risk, avg_progress, avg_quiz):
-    """Menampilkan halaman Dashboard"""
+    """Menampilkan halaman Dashboard - Sesuai BRD FR-01, FR-02, FR-04"""
     
     col1, col2 = st.columns([2, 1])
     with col1:
-        st.markdown('<p class="main-header">🎓 AI Learning Analytics Dashboard</p>', unsafe_allow_html=True)
+        st.markdown('<p class="main-header">🎓 AILA - AI Learning Analytics</p>', unsafe_allow_html=True)
     with col2:
         st.markdown(f'<p class="sub-header" style="text-align: right;">Quipper | {datetime.now().strftime("%d %B %Y")}</p>', unsafe_allow_html=True)
     
     st.markdown("---")
     
-    # KPI Metrics
+    # FR-01: KPI Metrics
     st.subheader("📊 Key Performance Indicators")
     
     col1, col2, col3, col4 = st.columns(4)
@@ -280,7 +288,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     
     st.markdown("---")
     
-    # Risk Analysis
+    # FR-01 & FR-02: Risk Analysis
     st.subheader("🎯 Student Risk Analysis")
     
     col1, col2 = st.columns([2, 1])
@@ -311,7 +319,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         fig2.update_layout(height=400)
         st.plotly_chart(fig2, use_container_width=True)
     
-    # High Risk Students
+    # FR-02: High Risk Students with Root Cause Analysis
     st.subheader("📋 High Risk Students - Priority Intervention")
     
     high_risk_students = filtered_df[filtered_df['risk_category'] == 'High'].copy()
@@ -319,12 +327,25 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     
     if len(high_risk_students) > 0:
         risk_factors = []
+        root_causes = []
         for _, student in high_risk_students.head(10).iterrows():
             factors = dropout_predictor.get_risk_factors(student)
             risk_factors.append(', '.join(factors) if factors else 'Multiple risk indicators')
+            # Root cause analysis
+            causes = []
+            if student['days_active'] < 14:
+                causes.append("Low activity")
+            if student['avg_quiz_score'] < 40:
+                causes.append("Poor quiz performance")
+            if student['progress_rate'] < 30:
+                causes.append("Low progress")
+            if student['forum_posts'] == 0:
+                causes.append("No engagement")
+            root_causes.append(', '.join(causes) if causes else 'Multiple factors')
         
         display_df = high_risk_students.head(10)[['student_id', 'name', 'course', 'risk_score', 'progress_rate', 'avg_quiz_score', 'days_active']].copy()
         display_df['risk_factors'] = risk_factors[:len(display_df)]
+        display_df['root_causes'] = root_causes[:len(display_df)]
         
         styled_df = display_df.style.map(
             lambda x: 'color: #E31E24; font-weight: bold;' if isinstance(x, (int, float)) and x > 70 else '',
@@ -332,6 +353,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         )
         st.dataframe(styled_df, use_container_width=True)
         
+        # FR-03: AI Intervention Suggestions
         st.info("💡 **AI Intervention Suggestions:**")
         for _, student in high_risk_students.head(3).iterrows():
             factors = dropout_predictor.get_risk_factors(student)
@@ -342,7 +364,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     
     st.markdown("---")
     
-    # Sentiment Analysis
+    # FR-04: Sentiment Analysis
     st.subheader("💬 Student Sentiment Analysis")
     
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
@@ -385,7 +407,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     
     st.markdown("---")
     
-    # Feedback Summary
+    # FR-04: Feedback Summary Report
     st.subheader("📝 Student Feedback Summary Report")
     
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
@@ -549,163 +571,121 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             st.write("Not enough data for course recommendations.")
 
 def show_faq():
-    """Menampilkan halaman FAQ"""
+    """Menampilkan halaman FAQ - Lengkap & Informatif"""
     
-    st.markdown('<p class="main-header">❓ FAQ - Pusat Bantuan Belajar</p>', unsafe_allow_html=True)
-    st.markdown("Temukan jawaban atas pertanyaan yang paling sering ditanyakan seputar belajar di Quipper.")
+    st.markdown('<p class="main-header">❓ FAQ - Pusat Bantuan AILA</p>', unsafe_allow_html=True)
+    st.markdown("Temukan jawaban atas pertanyaan yang paling sering ditanyakan seputar platform Quipper dan AILA.")
     st.markdown("---")
     
     # Search/Filter FAQ
     search = st.text_input("🔍 Cari pertanyaan...", placeholder="Ketik kata kunci...")
     st.markdown("---")
     
-    # FAQ Data
+    # FAQ Data - Lengkap
     faqs = [
+        # === JADWAL BELAJAR ===
         {
             "category": "📚 Jadwal Belajar",
             "question": "Bagaimana cara membuat jadwal belajar yang efektif?",
-            "answer": "Kami merekomendasikan metode Pomodoro: belajar 25 menit, istirahat 5 menit. Lakukan 4-5 siklus per sesi. Prioritaskan materi yang sulit di pagi hari saat pikiran masih segar, dan gunakan jadwal yang konsisten setiap hari."
+            "answer": "Kami merekomendasikan metode Pomodoro: belajar 25 menit, istirahat 5 menit. Lakukan 4-5 siklus per sesi. Prioritaskan materi yang sulit di pagi hari saat pikiran masih segar, dan gunakan jadwal yang konsisten setiap hari. Jangan lupa untuk memasukkan waktu istirahat dan refreshing."
         },
         {
             "category": "📚 Jadwal Belajar",
-            "question": "Berapa lama waktu ideal belajar per hari?",
-            "answer": "Untuk siswa SMA, waktu belajar ideal adalah 3-4 jam per hari di luar jam sekolah. Bisa dibagi menjadi 2 sesi: pagi (1.5 jam) dan sore/malam (1.5-2 jam). Jangan lupa istirahat setiap 45-60 menit."
+            "question": "Berapa lama waktu ideal belajar per hari untuk siswa SMA?",
+            "answer": "Untuk siswa SMA, waktu belajar ideal adalah 3-4 jam per hari di luar jam sekolah. Bisa dibagi menjadi 2 sesi: pagi (1.5 jam) dan sore/malam (1.5-2 jam). Jangan lupa istirahat setiap 45-60 menit. Yang terpenting adalah kualitas, bukan kuantitas."
         },
         {
             "category": "📚 Jadwal Belajar",
-            "question": "Bagaimana cara belajar yang efektif untuk ujian?",
-            "answer": "1. Buat ringkasan materi, 2. Kerjakan soal-soal latihan tahun sebelumnya, 3. Gunakan teknik spaced repetition (ulangi materi secara berkala), 4. Diskusikan dengan teman untuk pemahaman yang lebih dalam, 5. Istirahat yang cukup sebelum ujian."
+            "question": "Bagaimana cara belajar yang efektif untuk menghadapi ujian?",
+            "answer": "1. Buat ringkasan materi dari setiap bab, 2. Kerjakan soal-soal latihan dari tahun sebelumnya, 3. Gunakan teknik spaced repetition (ulangi materi secara berkala), 4. Diskusikan dengan teman untuk pemahaman yang lebih dalam, 5. Istirahat yang cukup sebelum ujian, 6. Jangan lupa berdoa dan tetap percaya diri."
         },
+        {
+            "category": "📚 Jadwal Belajar",
+            "question": "Apa itu metode Pomodoro dan bagaimana cara menerapkannya?",
+            "answer": "Metode Pomodoro adalah teknik manajemen waktu yang membagi waktu belajar menjadi interval 25 menit (disebut 'pomodoro') diikuti dengan istirahat 5 menit. Setelah 4 pomodoro, ambil istirahat panjang 15-30 menit. Cara menerapkannya: 1) Tentukan tugas yang akan dikerjakan, 2) Set timer 25 menit, 3) Fokus penuh selama 25 menit, 4) Istirahat 5 menit, 5) Ulangi siklus."
+        },
+        {
+            "category": "📚 Jadwal Belajar",
+            "question": "Kapan waktu terbaik untuk belajar? Pagi atau malam?",
+            "answer": "Setiap orang memiliki ritme yang berbeda. Namun secara umum, pagi hari (06.00-09.00) adalah waktu terbaik untuk belajar materi baru karena pikiran masih segar. Sore/malam (19.00-21.00) cocok untuk mengulang dan latihan soal. Temukan waktu yang paling produktif untuk Anda dan konsistenlah."
+        },
+        
+        # === MODUL & MATERI ===
         {
             "category": "📖 Modul & Materi",
             "question": "Di mana saya bisa mengakses semua modul pembelajaran?",
-            "answer": "Semua modul pembelajaran dapat diakses melalui dashboard Quipper School di menu 'Materi Belajar'. Modul tersedia dalam bentuk video, PDF, dan latihan interaktif. Pastikan Anda login dengan akun Quipper Anda."
+            "answer": "Semua modul pembelajaran dapat diakses melalui dashboard Quipper School di menu 'Materi Belajar'. Modul tersedia dalam bentuk video pembelajaran, PDF rangkuman, dan latihan interaktif. Pastikan Anda login dengan akun Quipper Anda. Modul baru akan ditambahkan secara berkala sesuai dengan kurikulum terbaru."
         },
         {
             "category": "📖 Modul & Materi",
-            "question": "Apakah ada modul untuk persiapan UTBK?",
-            "answer": "Ya! Quipper menyediakan paket khusus 'Quipper UTBK' yang berisi ribuan soal prediksi, tryout online, dan video pembahasan dari tutor berpengalaman. Akses melalui menu 'UTBK Center' di dashboard."
+            "question": "Apakah Quipper menyediakan modul untuk persiapan UTBK?",
+            "answer": "Ya! Quipper menyediakan paket khusus 'Quipper UTBK' yang berisi: 1) Ribuan soal prediksi terbaru, 2) Tryout online dengan sistem penilaian, 3) Video pembahasan dari tutor berpengalaman, 4) Materi khusus untuk setiap mata pelajaran UTBK. Akses melalui menu 'UTBK Center' di dashboard utama."
         },
         {
             "category": "📖 Modul & Materi",
-            "question": "Bagaimana cara mendownload materi offline?",
-            "answer": "Untuk mendownload materi, buka modul yang diinginkan, klik tombol 'Download' (ikon panah ke bawah). File PDF atau video akan tersimpan di perangkat Anda. Materi yang sudah diunduh bisa diakses tanpa koneksi internet."
+            "question": "Bagaimana cara mendownload materi untuk belajar offline?",
+            "answer": "Untuk mendownload materi: 1) Buka modul yang diinginkan, 2) Klik tombol 'Download' (ikon panah ke bawah), 3) File PDF atau video akan tersimpan di perangkat Anda. Materi yang sudah diunduh bisa diakses tanpa koneksi internet. Pastikan Anda memiliki ruang penyimpanan yang cukup."
         },
+        {
+            "category": "📖 Modul & Materi",
+            "question": "Apakah materi di Quipper selalu update dengan kurikulum terbaru?",
+            "answer": "Ya, tim kurikulum Quipper secara rutin memperbarui materi sesuai dengan kurikulum terbaru (Kurikulum Merdeka). Setiap ada perubahan kebijakan dari Kemendikbud, materi akan disesuaikan dalam waktu maksimal 2 minggu. Anda akan mendapatkan notifikasi ketika ada pembaruan materi."
+        },
+        {
+            "category": "📖 Modul & Materi",
+            "question": "Bagaimana cara mengetahui materi yang sudah saya pelajari?",
+            "answer": "Anda dapat melihat progress belajar di dashboard utama. Setiap modul yang sudah Anda selesaikan akan ditandai dengan centang hijau. Selain itu, di menu 'Progress' Anda bisa melihat detail materi yang sudah dan belum dipelajari, serta nilai quiz yang sudah Anda kerjakan."
+        },
+        {
+            "category": "📖 Modul & Materi",
+            "question": "Apa yang harus dilakukan jika video pembelajaran tidak bisa diputar?",
+            "answer": "1. Periksa koneksi internet Anda, 2. Refresh halaman browser, 3. Coba gunakan browser lain (Chrome/Firefox direkomendasikan), 4. Clear cache browser, 5. Coba akses di jam yang berbeda (jika server sedang sibuk). Jika masih bermasalah, laporkan melalui menu 'Bantuan'."
+        },
+        
+        # === REKOMENDASI ===
         {
             "category": "🎯 Rekomendasi Belajar",
-            "question": "Bagaimana cara mendapatkan rekomendasi materi yang sesuai?",
-            "answer": "AI Learning Analytics Dashboard akan menganalisis performa Anda dan memberikan rekomendasi materi yang sesuai. Cek bagian 'Rekomendasi Belajar' di dashboard utama atau minta saran dari mentor Anda."
+            "question": "Bagaimana cara mendapatkan rekomendasi materi yang sesuai dengan kemampuan saya?",
+            "answer": "AILA (AI Learning Analytics) akan menganalisis performa Anda dan memberikan rekomendasi materi yang sesuai. Cek bagian 'Rekomendasi Belajar' di dashboard utama. Sistem akan merekomendasikan: 1) Materi yang perlu ditingkatkan, 2) Modul selanjutnya yang cocok, 3) Latihan soal tambahan berdasarkan kelemahan Anda."
         },
         {
             "category": "🎯 Rekomendasi Belajar",
             "question": "Materi apa yang sebaiknya saya pelajari pertama kali?",
-            "answer": "Mulailah dengan materi yang menjadi dasar (fundamental) untuk mata pelajaran yang Anda ambil. Contoh: untuk Matematika, kuasai aljabar dasar sebelum kalkulus. Dashboard akan menunjukkan area yang perlu Anda tingkatkan."
+            "answer": "Mulailah dengan materi yang menjadi dasar (fundamental) untuk mata pelajaran yang Anda ambil. Contoh: untuk Matematika, kuasai aljabar dasar sebelum kalkulus. Dashboard AILA akan menunjukkan area yang perlu Anda tingkatkan berdasarkan hasil quiz dan progress Anda. Ikuti rekomendasi dari sistem."
         },
         {
             "category": "🎯 Rekomendasi Belajar",
-            "question": "Bagaimana cara meningkatkan nilai quiz saya?",
-            "answer": "1. Review materi sebelum quiz, 2. Kerjakan latihan soal tambahan, 3. Perhatikan feedback dari quiz sebelumnya, 4. Tonton ulang video pembahasan, 5. Catat kesalahan dan pelajari kembali konsep yang sulit. Konsistensi adalah kunci!"
+            "question": "Bagaimana cara meningkatkan nilai quiz saya secara signifikan?",
+            "answer": "1. Review materi sebelum quiz (minimal 30 menit), 2. Kerjakan latihan soal tambahan di modul, 3. Perhatikan feedback dari quiz sebelumnya, 4. Tonton ulang video pembahasan untuk konsep yang sulit, 5. Catat kesalahan dan pelajari kembali konsep yang salah, 6. Konsistensi adalah kunci - belajar sedikit setiap hari lebih baik daripada belajar banyak sekaligus."
         },
         {
-            "category": "💬 Bantuan & Dukungan",
-            "question": "Bagaimana cara menghubungi mentor jika saya kesulitan?",
-            "answer": "Anda dapat menghubungi mentor melalui fitur chat di dashboard Quipper atau mengirim pesan langsung melalui menu 'Bantuan'. Mentor akan merespon dalam waktu 1x24 jam."
+            "category": "🎯 Rekomendasi Belajar",
+            "question": "Apakah AILA bisa memberikan rekomendasi jalur karir berdasarkan minat saya?",
+            "answer": "Saat ini AILA fokus pada rekomendasi belajar akademik. Namun ke depannya, kami berencana menambahkan fitur rekomendasi jalur karir berdasarkan minat, bakat, dan performa akademik. Untuk saat ini, Anda bisa berkonsultasi dengan mentor atau guru BK di sekolah Anda."
         },
         {
-            "category": "💬 Bantuan & Dukungan",
-            "question": "Apa yang harus dilakukan jika modul tidak bisa diakses?",
-            "answer": "1. Periksa koneksi internet Anda, 2. Refresh halaman, 3. Coba gunakan browser lain (Chrome/Firefox), 4. Clear cache browser, 5. Jika masih bermasalah, hubungi tim teknis Quipper melalui menu 'Bantuan'."
+            "category": "🎯 Rekomendasi Belajar",
+            "question": "Bagaimana cara mengatasi rasa malas belajar?",
+            "answer": "1. Mulai dari hal kecil - belajar 10 menit dulu, 2. Buat target yang realistis, 3. Beri reward setelah mencapai target, 4. Cari teman belajar untuk saling memotivasi, 5. Ubah mindset - belajar adalah investasi untuk masa depan, 6. Gunakan teknik Pomodoro untuk menjaga fokus, 7. Ingat tujuan akhir Anda."
         },
-        {
-            "category": "💬 Bantuan & Dukungan",
-            "question": "Bagaimana cara melaporkan bug atau error di platform?",
-            "answer": "Anda dapat melaporkan bug melalui menu 'Bantuan' → 'Laporkan Masalah'. Sertakan screenshot dan deskripsi detail masalah. Tim teknis akan segera menindaklanjuti dan memberikan solusi."
-        }
-    ]
-    
-    # Filter FAQ berdasarkan search
-    if search:
-        search_lower = search.lower()
-        filtered_faqs = [f for f in faqs if search_lower in f['question'].lower() or search_lower in f['answer'].lower() or search_lower in f['category'].lower()]
-    else:
-        filtered_faqs = faqs
-    
-    # Tampilkan jumlah hasil
-    st.markdown(f"**{len(filtered_faqs)}** pertanyaan ditemukan")
-    
-    # Tampilkan FAQ berdasarkan kategori
-    if filtered_faqs:
-        categories = {}
-        for faq in filtered_faqs:
-            cat = faq['category']
-            if cat not in categories:
-                categories[cat] = []
-            categories[cat].append(faq)
         
-        for category, items in categories.items():
-            st.markdown(f"### {category}")
-            for faq in items:
-                with st.expander(f"❓ {faq['question']}"):
-                    st.markdown(f"<div class='faq-answer'>{faq['answer']}</div>", unsafe_allow_html=True)
-            st.markdown("---")
-    else:
-        st.info("Tidak ada pertanyaan yang sesuai dengan pencarian Anda. Coba kata kunci lain.")
-
-def main():
-    df = load_data()
-    
-    dropout_predictor = DropoutPredictor()
-    sentiment_analyzer = SentimentAnalyzer()
-    
-    try:
-        dropout_predictor.predict(df)
-    except:
-        with st.spinner("⏳ Melatih model prediksi dropout..."):
-            dropout_predictor.train(df)
-        st.success("✅ Model siap digunakan!")
-    
-    # Sidebar filters
-    st.sidebar.title("🎯 Filter Data")
-    st.sidebar.markdown("---")
-    
-    courses = ['All'] + sorted(df['course'].unique().tolist())
-    selected_course = st.sidebar.selectbox("📚 Select Course", courses)
-    
-    risk_levels = ['All', 'High', 'Medium', 'Low']
-    selected_risk = st.sidebar.selectbox("⚠️ Risk Level", risk_levels)
-    
-    cities = ['All'] + sorted(df['city'].unique().tolist())
-    selected_city = st.sidebar.selectbox("📍 City", cities)
-    
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("💡 **Powered by AI**")
-    
-    # Apply filters
-    filtered_df = df.copy()
-    if selected_course != 'All':
-        filtered_df = filtered_df[filtered_df['course'] == selected_course]
-    if selected_risk != 'All':
-        filtered_df = filtered_df[filtered_df['risk_category'] == selected_risk]
-    if selected_city != 'All':
-        filtered_df = filtered_df[filtered_df['city'] == selected_city]
-    
-    if len(filtered_df) == 0:
-        st.warning(f"⚠️ Tidak ada data untuk filter yang dipilih. Menampilkan semua data.")
-        filtered_df = df.copy()
-    
-    total_students = len(filtered_df)
-    high_risk = len(filtered_df[filtered_df['risk_category'] == 'High'])
-    avg_progress = filtered_df['progress_rate'].mean() if total_students > 0 else 0
-    avg_quiz = filtered_df['avg_quiz_score'].mean() if total_students > 0 else 0
-    
-    # TABS: Dashboard | FAQ
-    tab1, tab2 = st.tabs(["📊 Dashboard", "❓ FAQ & Panduan"])
-    
-    with tab1:
-        show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_students, high_risk, avg_progress, avg_quiz)
-    
-    with tab2:
-        show_faq()
-
-if __name__ == "__main__":
-    main()
+        # === BANTUAN & DUKUNGAN ===
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Bagaimana cara menghubungi mentor jika saya kesulitan memahami materi?",
+            "answer": "Anda dapat menghubungi mentor melalui: 1) Fitur chat di dashboard Quipper, 2) Mengirim pesan langsung melalui menu 'Bantuan', 3) Email ke support@quipper.com. Mentor akan merespon dalam waktu 1x24 jam. Untuk pertanyaan mendesak, gunakan fitur chat untuk respon lebih cepat."
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Apa yang harus dilakukan jika modul tidak bisa diakses atau error?",
+            "answer": "1. Periksa koneksi internet Anda, 2. Refresh halaman (F5), 3. Coba gunakan browser lain (Chrome/Firefox), 4. Clear cache browser (Ctrl+Shift+Delete), 5. Coba akses di perangkat lain, 6. Jika masih bermasalah, hubungi tim teknis Quipper melalui menu 'Bantuan' atau email support@quipper.com."
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Bagaimana cara melaporkan bug atau error di platform Quipper?",
+            "answer": "Anda dapat melaporkan bug melalui: 1) Menu 'Bantuan' → 'Laporkan Masalah', 2) Email ke support@quipper.com dengan subjek 'Bug Report', 3) Chat dengan tim support di dashboard. Sertakan screenshot, deskripsi detail masalah, dan langkah-langkah yang menyebabkan error. Tim teknis akan segera menindaklanjuti."
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Apakah Quipper menyediakan layanan konsultasi privat?",
+            "answer": "Ya, Quipper menyediakan layanan konsultasi privat dengan mentor berpengalaman. Anda bisa memilih jadwal dan topik yang ingin didiskusikan. Layanan ini tersedia melalui menu 'Konsultasi' di dashboard. Biaya
