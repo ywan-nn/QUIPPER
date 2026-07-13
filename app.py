@@ -296,7 +296,7 @@ def main():
     with col1:
         risk_counts = filtered_df['risk_category'].value_counts().reset_index()
         risk_counts.columns = ['Risk Level', 'Count']
-        colors = {'High': '#E31E24', 'Medium': '#FF6B00', 'Low': '#28a745'}
+        colors = {'High': '#E74C3C', 'Medium': '#F39C12', 'Low': '#2ECC71'}
         fig1 = px.bar(risk_counts, x='Risk Level', y='Count', 
                      color='Risk Level',
                      color_discrete_map=colors,
@@ -313,8 +313,9 @@ def main():
         risk_by_course = risk_by_course.sort_values('Avg Risk Score', ascending=False)
         fig2 = px.bar(risk_by_course.head(8), x='Course', y='Avg Risk Score',
                      title="Average Risk Score by Course",
+                     labels={'Course': 'Course', 'Avg Risk Score': 'Avg Risk Score'},
                      color='Avg Risk Score',
-                     color_continuous_scale='Reds')
+                     color_continuous_scale='Blues')
         fig2.update_layout(height=400)
         st.plotly_chart(fig2, use_container_width=True)
     
@@ -333,7 +334,6 @@ def main():
         display_df = high_risk_students.head(10)[['student_id', 'name', 'course', 'risk_score', 'progress_rate', 'avg_quiz_score', 'days_active']].copy()
         display_df['risk_factors'] = risk_factors[:len(display_df)]
         
-        # ✅ PAKAI .map() - HANYA RISK_SCORE > 70 YANG MERAH
         styled_df = display_df.style.map(
             lambda x: 'color: #E31E24; font-weight: bold;' if isinstance(x, (int, float)) and x > 70 else '',
             subset=['risk_score']
@@ -362,7 +362,7 @@ def main():
         with col1:
             sent_counts = filtered_df['predicted_sentiment'].value_counts().reset_index()
             sent_counts.columns = ['Sentiment', 'Count']
-            colors2 = {'positive': '#28a745', 'negative': '#E31E24', 'neutral': '#FF6B00'}
+            colors2 = {'positive': '#2ECC71', 'negative': '#E74C3C', 'neutral': '#F39C12'}
             fig3 = px.pie(sent_counts, values='Count', names='Sentiment', 
                          title='Sentiment Distribution',
                          color='Sentiment',
@@ -415,7 +415,7 @@ def main():
             st.markdown(f"""
             <div class="metric-card">
                 <div style="font-size:0.9rem; color:#666;">Positive Feedback</div>
-                <div class="metric-value" style="color:#28a745;">{summary['positive']}</div>
+                <div class="metric-value" style="color:#2ECC71;">{summary['positive']}</div>
                 <div style="font-size:0.8rem; color:#666;">{positive_pct:.1f}%</div>
             </div>
             """, unsafe_allow_html=True)
@@ -426,7 +426,7 @@ def main():
             st.markdown(f"""
             <div class="metric-card">
                 <div style="font-size:0.9rem; color:#666;">Negative Feedback</div>
-                <div class="metric-value" style="color:#E31E24;">{summary['negative']}</div>
+                <div class="metric-value" style="color:#E74C3C;">{summary['negative']}</div>
                 <div style="font-size:0.8rem; color:#666;">{negative_pct:.1f}%</div>
             </div>
             """, unsafe_allow_html=True)
@@ -449,11 +449,11 @@ def main():
             
             def color_sentiment(val):
                 if val == 'POSITIVE':
-                    return 'color: #28a745'
+                    return 'color: #2ECC71'
                 elif val == 'NEGATIVE':
-                    return 'color: #E31E24'
+                    return 'color: #E74C3C'
                 else:
-                    return 'color: #FF6B00'
+                    return 'color: #F39C12'
             
             st.dataframe(
                 feedback_df.style.map(color_sentiment, subset=['Sentiment']),
@@ -486,20 +486,29 @@ def main():
     col1, col2 = st.columns(2)
     
     with col1:
-        fig5 = px.histogram(filtered_df, x='progress_rate', 
-                           title='Student Progress Distribution',
-                           nbins=20,
-                           color_discrete_sequence=['#E31E24'])
+        fig5 = px.histogram(
+            filtered_df, 
+            x='progress_rate', 
+            title='Student Progress Distribution',
+            labels={'progress_rate': 'Progress (%)', 'count': 'Count'},
+            nbins=20,
+            color_discrete_sequence=['#4A90D9']
+        )
         fig5.update_layout(height=350)
         st.plotly_chart(fig5, use_container_width=True)
     
     with col2:
-        fig6 = px.scatter(filtered_df, x='progress_rate', y='avg_quiz_score',
-                         color='risk_category',
-                         title='Quiz Score vs Progress',
-                         color_discrete_map={'High': '#E31E24', 'Medium': '#FF6B00', 'Low': '#28a745'},
-                         hover_data=['student_id', 'name'],
-                         size='total_logins')
+        fig6 = px.scatter(
+            filtered_df, 
+            x='progress_rate', 
+            y='avg_quiz_score',
+            color='risk_category',
+            title='Quiz Score vs Progress',
+            labels={'progress_rate': 'Progress (%)', 'avg_quiz_score': 'Avg Quiz Score'},
+            color_discrete_map={'High': '#E74C3C', 'Medium': '#F39C12', 'Low': '#2ECC71'},
+            hover_data=['student_id', 'name'],
+            size='total_logins'
+        )
         fig6.update_layout(height=350)
         st.plotly_chart(fig6, use_container_width=True)
     
