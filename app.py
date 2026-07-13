@@ -42,24 +42,24 @@ st.markdown("""
         background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
         padding-top: 20px;
     }
-    [data-testid="stSidebar"] * {
-        color: white !important;
-    }
     [data-testid="stSidebar"] .stSelectbox label {
         color: #ffffff !important;
         font-weight: 600;
         font-size: 0.9rem;
     }
     [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
-        background-color: rgba(255,255,255,0.2) !important;
+        background-color: #ffffff !important;
         border-radius: 8px;
         border: 1px solid rgba(255,255,255,0.3) !important;
     }
     [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"]:hover {
-        background-color: rgba(255,255,255,0.3) !important;
+        background-color: #f0f0f0 !important;
     }
     [data-testid="stSidebar"] .stSelectbox span {
-        color: white !important;
+        color: #333333 !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox div {
+        color: #333333 !important;
     }
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
@@ -74,7 +74,7 @@ st.markdown("""
         border-color: rgba(255,255,255,0.15);
     }
     
-    /* Metric Cards - Elegan */
+    /* Metric Cards */
     .metric-card {
         background: #f8f9fa;
         padding: 15px 10px;
@@ -107,7 +107,7 @@ st.markdown("""
         margin-top: 2px;
     }
     
-    /* Risk Colors - JELAS */
+    /* Risk Colors */
     .risk-high {
         color: #E31E24 !important;
     }
@@ -169,21 +169,6 @@ st.markdown("""
         border-radius: 8px;
         border-left: 4px solid #FF6B00;
     }
-    
-    /* Scrollbar */
-    ::-webkit-scrollbar {
-        width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: #E31E24;
-        border-radius: 4px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: #B71C1C;
-    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -201,7 +186,6 @@ def load_data():
         return df
 
 def generate_intervention_message(student, risk_factors):
-    """Generate personalized intervention message"""
     name = student['name']
     course = student['course']
     progress = student['progress_rate']
@@ -218,42 +202,34 @@ def generate_intervention_message(student, risk_factors):
     return message
 
 def main():
-    # Load data
     df = load_data()
     
-    # Initialize models
     dropout_predictor = DropoutPredictor()
     sentiment_analyzer = SentimentAnalyzer()
     chatbot = StudentAssistantChatbot()
     
-    # Train dropout model if not exists
     try:
         dropout_predictor.predict(df)
     except:
-        with st.spinner("⏳ Melatih model prediksi dropout... (hanya sekali)"):
+        with st.spinner("⏳ Melatih model prediksi dropout..."):
             dropout_predictor.train(df)
         st.success("✅ Model siap digunakan!")
     
-    # Sidebar filters - MERAH TELKOM
     st.sidebar.title("🎯 Filter Data")
     st.sidebar.markdown("---")
     
-    # Course filter
     courses = ['All'] + sorted(df['course'].unique().tolist())
     selected_course = st.sidebar.selectbox("📚 Select Course", courses)
     
-    # Risk level filter
     risk_levels = ['All', 'High', 'Medium', 'Low']
     selected_risk = st.sidebar.selectbox("⚠️ Risk Level", risk_levels)
     
-    # City filter
     cities = ['All'] + sorted(df['city'].unique().tolist())
     selected_city = st.sidebar.selectbox("📍 City", cities)
     
     st.sidebar.markdown("---")
     st.sidebar.markdown("💡 **Powered by AI**")
     
-    # Apply filters
     filtered_df = df.copy()
     if selected_course != 'All':
         filtered_df = filtered_df[filtered_df['course'] == selected_course]
@@ -262,7 +238,6 @@ def main():
     if selected_city != 'All':
         filtered_df = filtered_df[filtered_df['city'] == selected_city]
     
-    # Main content
     col1, col2 = st.columns([2, 1])
     with col1:
         st.markdown('<p class="main-header">🎓 AI Learning Analytics Dashboard</p>', unsafe_allow_html=True)
@@ -270,9 +245,6 @@ def main():
         st.markdown(f'<p class="sub-header" style="text-align: right;">Quipper | {datetime.now().strftime("%d %B %Y")}</p>', unsafe_allow_html=True)
     
     st.markdown("---")
-    
-    # KPI Metrics
-    st.subheader("📊 Key Performance Indicators")
     
     total_students = len(filtered_df)
     high_risk = len(filtered_df[filtered_df['risk_category'] == 'High'])
@@ -361,14 +333,12 @@ def main():
         display_df = high_risk_students.head(10)[['student_id', 'name', 'course', 'risk_score', 'progress_rate', 'avg_quiz_score', 'days_active']].copy()
         display_df['risk_factors'] = risk_factors[:len(display_df)]
         
-        # PAKAI .map() BUKAN .applymap()
-        st.dataframe(
-            display_df.style.map(
-                lambda x: 'color: #E31E24; font-weight: bold;' if isinstance(x, (int, float)) and x > 70 else '',
-                subset=['risk_score']
-            ),
-            use_container_width=True
+        # ✅ PAKAI .map() - HANYA RISK_SCORE > 70 YANG MERAH
+        styled_df = display_df.style.map(
+            lambda x: 'color: #E31E24; font-weight: bold;' if isinstance(x, (int, float)) and x > 70 else '',
+            subset=['risk_score']
         )
+        st.dataframe(styled_df, use_container_width=True)
         
         st.info("💡 **AI Intervention Suggestions:**")
         for _, student in high_risk_students.head(3).iterrows():
@@ -386,7 +356,6 @@ def main():
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
         results = sentiment_analyzer.analyze_batch(filtered_df['feedback_text'].tolist())
         filtered_df['predicted_sentiment'] = [r['sentiment'] for r in results]
-        filtered_df['polarity_score'] = [r['polarity'] for r in results]
         
         col1, col2, col3 = st.columns([1, 2, 1])
         
@@ -424,11 +393,10 @@ def main():
     
     st.markdown("---")
     
-    # FEEDBACK SUMMARY
+    # Feedback Summary
     st.subheader("📝 Student Feedback Summary Report")
     
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
-        # Get sentiment summary
         summary = sentiment_analyzer.get_sentiment_summary(filtered_df)
         
         col1, col2, col3 = st.columns(3)
@@ -463,10 +431,6 @@ def main():
             </div>
             """, unsafe_allow_html=True)
         
-        # Feedback details table
-        st.subheader("📋 Detailed Feedback Analysis")
-        
-        # Create feedback summary table
         feedback_data = []
         for idx, row in filtered_df.iterrows():
             if pd.notna(row.get('feedback_text')):
@@ -483,7 +447,6 @@ def main():
         if feedback_data:
             feedback_df = pd.DataFrame(feedback_data)
             
-            # Color coding for sentiment
             def color_sentiment(val):
                 if val == 'POSITIVE':
                     return 'color: #28a745'
@@ -498,7 +461,6 @@ def main():
                 height=300
             )
             
-            # Export button
             csv = feedback_df.to_csv(index=False)
             st.download_button(
                 label="📥 Download Feedback Summary (CSV)",
@@ -507,7 +469,6 @@ def main():
                 mime="text/csv"
             )
         
-        # Top Keywords Summary
         if 'top_keywords' in summary and summary['top_keywords']:
             st.subheader("🔑 Top Keywords from Feedback")
             cols = st.columns(5)
@@ -542,7 +503,7 @@ def main():
         fig6.update_layout(height=350)
         st.plotly_chart(fig6, use_container_width=True)
     
-    # AI Recommendations
+    st.markdown("---")
     st.subheader("🤖 AI Learning Recommendations")
     
     col1, col2 = st.columns(2)
@@ -579,14 +540,12 @@ def main():
     
     st.markdown("---")
     
-    # ============= CHATBOT ASSISTANT =============
+    # Chatbot
     st.subheader("🤖 AI Chatbot Assistant")
     
-    # Create two columns: chat history and input
     col1, col2 = st.columns([2, 1])
     
     with col1:
-        # Chat history display
         if "chat_history" not in st.session_state:
             st.session_state.chat_history = []
             st.session_state.chat_history.append({
@@ -594,7 +553,6 @@ def main():
                 "message": "Halo! Saya asisten belajar AI. Ada yang bisa saya bantu? 😊"
             })
         
-        # Display chat messages
         for msg in st.session_state.chat_history:
             if msg["role"] == "user":
                 st.markdown(f"""
@@ -609,7 +567,6 @@ def main():
                 </div>
                 """, unsafe_allow_html=True)
         
-        # Clear chat button
         if st.button("🔄 Clear Chat"):
             st.session_state.chat_history = [{
                 "role": "assistant",
@@ -628,7 +585,6 @@ def main():
         
         for q in quick_questions:
             if st.button(q, key=f"q_{q}"):
-                # Get student data for context
                 student_context = None
                 if not filtered_df.empty:
                     high_risk = filtered_df[filtered_df['risk_category'] == 'High']
@@ -637,17 +593,12 @@ def main():
                     else:
                         student_context = filtered_df.iloc[0].to_dict()
                 
-                # Get response
                 response = chatbot.get_response(q, student_context)
-                
-                # Add to history
                 st.session_state.chat_history.append({"role": "user", "message": q})
                 st.session_state.chat_history.append({"role": "assistant", "message": response})
     
-    # Chat input
     user_input = st.text_input("Tanyakan sesuatu ke asisten belajar:", key="chat_input")
     if st.button("Kirim") and user_input:
-        # Get student data for context
         student_context = None
         if not filtered_df.empty:
             high_risk = filtered_df[filtered_df['risk_category'] == 'High']
@@ -656,10 +607,7 @@ def main():
             else:
                 student_context = filtered_df.iloc[0].to_dict()
         
-        # Get response
         response = chatbot.get_response(user_input, student_context)
-        
-        # Add to history
         st.session_state.chat_history.append({"role": "user", "message": user_input})
         st.session_state.chat_history.append({"role": "assistant", "message": response})
     
