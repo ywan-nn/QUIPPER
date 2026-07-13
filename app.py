@@ -155,8 +155,9 @@ def main():
     try:
         dropout_predictor.predict(df)
     except:
-        st.info("Training dropout prediction model...")
-        dropout_predictor.train(df)
+        with st.spinner("⏳ Melatih model prediksi dropout... (hanya sekali)"):
+            dropout_predictor.train(df)
+        st.success("✅ Model siap digunakan!")
     
     # Sidebar filters
     st.sidebar.title("🎯 Filter Data")
@@ -535,7 +536,6 @@ def main():
                 "role": "assistant",
                 "message": "Halo! Saya asisten belajar AI. Ada yang bisa saya bantu? 😊"
             }]
-            st.rerun()
     
     with col2:
         st.markdown("**💡 Quick Questions:**")
@@ -564,7 +564,6 @@ def main():
                 # Add to history
                 st.session_state.chat_history.append({"role": "user", "message": q})
                 st.session_state.chat_history.append({"role": "assistant", "message": response})
-                st.rerun()
     
     # Chat input
     user_input = st.text_input("Tanyakan sesuatu ke asisten belajar:", key="chat_input")
@@ -584,7 +583,6 @@ def main():
         # Add to history
         st.session_state.chat_history.append({"role": "user", "message": user_input})
         st.session_state.chat_history.append({"role": "assistant", "message": response})
-        st.rerun()
     
     st.markdown("---")
     st.markdown("*💡 Powered by AI Learning Analytics. Data updated in real-time.*")
