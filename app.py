@@ -14,19 +14,27 @@ from models.sentiment_analyzer import SentimentAnalyzer
 # Page configuration
 st.set_page_config(
     page_title="AILA - AI Learning Analytics Dashboard",
-    page_icon="🎓",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Custom CSS - PROFESIONAL dengan Font Awesome
 st.markdown("""
 <style>
+    /* Font Awesome for professional icons */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+    
+    /* Header */
     .main-header {
         font-size: 2.5rem;
         color: #E31E24;
         margin-bottom: 0;
         font-weight: 700;
+    }
+    .main-header i {
+        color: #E31E24;
+        margin-right: 12px;
     }
     .sub-header {
         font-size: 1.2rem;
@@ -35,6 +43,7 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
+    /* Sidebar Styling */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
         padding-top: 20px;
@@ -72,7 +81,13 @@ st.markdown("""
     [data-testid="stSidebar"] hr {
         border-color: rgba(255,255,255,0.15);
     }
+    [data-testid="stSidebar"] .sidebar-icon {
+        color: white;
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
     
+    /* Metric Cards */
     .metric-card {
         background: #f8f9fa;
         padding: 15px 10px;
@@ -85,6 +100,11 @@ st.markdown("""
     .metric-card:hover {
         box-shadow: 0 4px 12px rgba(227, 30, 36, 0.15);
         transform: translateY(-2px);
+    }
+    .metric-card .metric-icon {
+        font-size: 1.8rem;
+        color: #E31E24;
+        margin-bottom: 4px;
     }
     .metric-label {
         font-size: 0.85rem;
@@ -105,6 +125,7 @@ st.markdown("""
         margin-top: 2px;
     }
     
+    /* Risk Colors */
     .risk-high {
         color: #E31E24 !important;
     }
@@ -115,6 +136,7 @@ st.markdown("""
         color: #28a745 !important;
     }
     
+    /* Buttons */
     .stButton > button {
         background-color: #E31E24;
         color: white;
@@ -130,6 +152,7 @@ st.markdown("""
         transform: scale(1.02);
     }
     
+    /* Feedback Cards */
     .feedback-positive {
         background-color: #d4edda;
         padding: 8px 12px;
@@ -149,6 +172,7 @@ st.markdown("""
         border-left: 4px solid #FF6B00;
     }
     
+    /* FAQ Styling */
     .faq-item {
         background: #f8f9fa;
         padding: 16px 20px;
@@ -184,6 +208,7 @@ st.markdown("""
         margin-bottom: 8px;
     }
     
+    /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
     }
@@ -192,10 +217,35 @@ st.markdown("""
         padding: 8px 20px;
         font-weight: 600;
         background-color: #f0f0f0;
+        color: #333;
+    }
+    .stTabs [data-baseweb="tab"] i {
+        margin-right: 8px;
     }
     .stTabs [aria-selected="true"] {
         background-color: #E31E24 !important;
         color: white !important;
+    }
+    .stTabs [aria-selected="true"] i {
+        color: white !important;
+    }
+    
+    /* Section headers with icons */
+    .section-header {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+    }
+    .section-header i {
+        color: #E31E24;
+        margin-right: 10px;
+    }
+    
+    /* Sidebar icon styling */
+    .sidebar-filter-label i {
+        margin-right: 8px;
+        color: white;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -234,20 +284,21 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     
     col1, col2 = st.columns([2, 1])
     with col1:
-        st.markdown('<p class="main-header">🎓 AILA - AI Learning Analytics</p>', unsafe_allow_html=True)
+        st.markdown('<p class="main-header"><i class="fas fa-robot"></i> AILA - AI Learning Analytics</p>', unsafe_allow_html=True)
     with col2:
-        st.markdown(f'<p class="sub-header" style="text-align: right;">Quipper | {datetime.now().strftime("%d %B %Y")}</p>', unsafe_allow_html=True)
+        st.markdown(f'<p class="sub-header" style="text-align: right;"><i class="far fa-calendar-alt"></i> Quipper | {datetime.now().strftime("%d %B %Y")}</p>', unsafe_allow_html=True)
     
     st.markdown("---")
     
     # FR-01: KPI Metrics
-    st.subheader("📊 Key Performance Indicators")
+    st.markdown('<p class="section-header"><i class="fas fa-chart-pie"></i> Key Performance Indicators</p>', unsafe_allow_html=True)
     
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         st.markdown(f"""
         <div class="metric-card">
+            <div class="metric-icon"><i class="fas fa-users"></i></div>
             <div class="metric-label">Total Students</div>
             <div class="metric-value">{total_students}</div>
         </div>
@@ -256,7 +307,8 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     with col2:
         st.markdown(f"""
         <div class="metric-card">
-            <div class="metric-label">⚠️ High Risk Students</div>
+            <div class="metric-icon"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="metric-label">High Risk Students</div>
             <div class="metric-value risk-high">{high_risk}</div>
             <div class="metric-sub">{high_risk/total_students*100:.1f}% of total</div>
         </div>
@@ -265,7 +317,8 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     with col3:
         st.markdown(f"""
         <div class="metric-card">
-            <div class="metric-label">📈 Average Progress</div>
+            <div class="metric-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="metric-label">Average Progress</div>
             <div class="metric-value">{avg_progress:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
@@ -273,7 +326,8 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     with col4:
         st.markdown(f"""
         <div class="metric-card">
-            <div class="metric-label">📝 Average Quiz Score</div>
+            <div class="metric-icon"><i class="fas fa-pencil-alt"></i></div>
+            <div class="metric-label">Average Quiz Score</div>
             <div class="metric-value">{avg_quiz:.1f}%</div>
         </div>
         """, unsafe_allow_html=True)
@@ -281,7 +335,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     st.markdown("---")
     
     # FR-01 & FR-02: Risk Analysis
-    st.subheader("🎯 Student Risk Analysis")
+    st.markdown('<p class="section-header"><i class="fas fa-shield-alt"></i> Student Risk Analysis</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns([2, 1])
     
@@ -312,7 +366,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         st.plotly_chart(fig2, use_container_width=True)
     
     # FR-02: High Risk Students with Root Cause Analysis
-    st.subheader("📋 High Risk Students - Priority Intervention")
+    st.markdown('<p class="section-header"><i class="fas fa-list-ul"></i> High Risk Students - Priority Intervention</p>', unsafe_allow_html=True)
     
     high_risk_students = filtered_df[filtered_df['risk_category'] == 'High'].copy()
     high_risk_students = high_risk_students.sort_values('risk_score', ascending=False)
@@ -355,7 +409,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     st.markdown("---")
     
     # FR-04: Sentiment Analysis
-    st.subheader("💬 Student Sentiment Analysis")
+    st.markdown('<p class="section-header"><i class="fas fa-comment-dots"></i> Student Sentiment Analysis</p>', unsafe_allow_html=True)
     
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
         results = sentiment_analyzer.analyze_batch(filtered_df['feedback_text'].tolist())
@@ -398,7 +452,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     st.markdown("---")
     
     # FR-04: Feedback Summary Report
-    st.subheader("📝 Student Feedback Summary Report")
+    st.markdown('<p class="section-header"><i class="fas fa-file-alt"></i> Student Feedback Summary Report</p>', unsafe_allow_html=True)
     
     if 'feedback_text' in filtered_df.columns and len(filtered_df) > 0:
         summary = sentiment_analyzer.get_sentiment_summary(filtered_df)
@@ -408,6 +462,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         with col1:
             st.markdown(f"""
             <div class="metric-card">
+                <div class="metric-icon"><i class="fas fa-inbox"></i></div>
                 <div style="font-size:0.9rem; color:#666;">Total Feedback</div>
                 <div class="metric-value">{summary['total_analyzed']}</div>
             </div>
@@ -418,6 +473,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             positive_pct = (summary['positive'] / total_feedback * 100) if total_feedback > 0 else 0
             st.markdown(f"""
             <div class="metric-card">
+                <div class="metric-icon" style="color:#2ECC71;"><i class="fas fa-thumbs-up"></i></div>
                 <div style="font-size:0.9rem; color:#666;">Positive Feedback</div>
                 <div class="metric-value" style="color:#2ECC71;">{summary['positive']}</div>
                 <div style="font-size:0.8rem; color:#666;">{positive_pct:.1f}%</div>
@@ -429,6 +485,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             negative_pct = (summary['negative'] / total_feedback * 100) if total_feedback > 0 else 0
             st.markdown(f"""
             <div class="metric-card">
+                <div class="metric-icon" style="color:#E74C3C;"><i class="fas fa-thumbs-down"></i></div>
                 <div style="font-size:0.9rem; color:#666;">Negative Feedback</div>
                 <div class="metric-value" style="color:#E74C3C;">{summary['negative']}</div>
                 <div style="font-size:0.8rem; color:#666;">{negative_pct:.1f}%</div>
@@ -474,7 +531,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             )
         
         if 'top_keywords' in summary and summary['top_keywords']:
-            st.subheader("🔑 Top Keywords from Feedback")
+            st.markdown('<p class="section-header"><i class="fas fa-tags"></i> Top Keywords from Feedback</p>', unsafe_allow_html=True)
             cols = st.columns(5)
             for idx, (word, count) in enumerate(summary['top_keywords'][:5]):
                 if idx < 5:
@@ -485,7 +542,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
     st.markdown("---")
     
     # Learning Progress
-    st.subheader("📈 Learning Progress Tracking")
+    st.markdown('<p class="section-header"><i class="fas fa-chart-bar"></i> Learning Progress Tracking</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
@@ -523,12 +580,12 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             st.info("No data to display")
     
     st.markdown("---")
-    st.subheader("🤖 AI Learning Recommendations")
+    st.markdown('<p class="section-header"><i class="fas fa-lightbulb"></i> AI Learning Recommendations</p>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("**📊 Dashboard AI Insights:**")
+        st.markdown("**<i class='fas fa-chart-simple'></i> Dashboard AI Insights:**", unsafe_allow_html=True)
         insights = []
         
         if total_students > 0 and high_risk > total_students * 0.2:
@@ -550,7 +607,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             st.write(insight)
     
     with col2:
-        st.markdown("**📚 Course Improvement Recommendations:**")
+        st.markdown("**<i class='fas fa-graduation-cap'></i> Course Improvement Recommendations:**", unsafe_allow_html=True)
         if len(filtered_df) > 10:
             course_avg_risk = filtered_df.groupby('course')['risk_score'].mean().reset_index()
             course_avg_risk = course_avg_risk.sort_values('risk_score', ascending=False)
@@ -563,7 +620,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
 def show_faq():
     """Menampilkan halaman FAQ - Lengkap & Informatif"""
     
-    st.markdown('<p class="main-header">❓ FAQ - Pusat Bantuan AILA</p>', unsafe_allow_html=True)
+    st.markdown('<p class="main-header"><i class="fas fa-circle-question"></i> FAQ - Pusat Bantuan AILA</p>', unsafe_allow_html=True)
     st.markdown("Temukan jawaban atas pertanyaan yang paling sering ditanyakan seputar platform Quipper dan AILA.")
     st.markdown("---")
     
