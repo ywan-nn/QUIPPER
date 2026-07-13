@@ -42,6 +42,10 @@ st.markdown("""
         margin-top: -10px;
         margin-bottom: 20px;
     }
+    .sub-header i {
+        color: #E31E24;
+        margin-right: 6px;
+    }
     
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
@@ -54,6 +58,10 @@ st.markdown("""
         color: #ffffff !important;
         font-weight: 600;
         font-size: 0.9rem;
+    }
+    [data-testid="stSidebar"] .stSelectbox label i {
+        color: #ffffff !important;
+        margin-right: 8px;
     }
     [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
         background-color: #ffffff !important;
@@ -75,16 +83,21 @@ st.markdown("""
         color: white !important;
         font-weight: 600;
     }
+    [data-testid="stSidebar"] h1 i, 
+    [data-testid="stSidebar"] h2 i, 
+    [data-testid="stSidebar"] h3 i {
+        color: white !important;
+        margin-right: 10px;
+    }
     [data-testid="stSidebar"] .stMarkdown {
         color: rgba(255,255,255,0.9) !important;
     }
+    [data-testid="stSidebar"] .stMarkdown i {
+        color: white !important;
+        margin-right: 8px;
+    }
     [data-testid="stSidebar"] hr {
         border-color: rgba(255,255,255,0.15);
-    }
-    [data-testid="stSidebar"] .sidebar-icon {
-        color: white;
-        margin-right: 10px;
-        font-size: 1.1rem;
     }
     
     /* Metric Cards */
@@ -146,10 +159,17 @@ st.markdown("""
         font-weight: 600;
         transition: all 0.2s ease;
     }
+    .stButton > button i {
+        color: white;
+        margin-right: 8px;
+    }
     .stButton > button:hover {
         background-color: #B71C1C;
         color: white;
         transform: scale(1.02);
+    }
+    .stButton > button:hover i {
+        color: white;
     }
     
     /* Feedback Cards */
@@ -242,10 +262,18 @@ st.markdown("""
         margin-right: 10px;
     }
     
-    /* Sidebar icon styling */
-    .sidebar-filter-label i {
+    /* Intervention suggestion */
+    .intervention-suggestion {
+        padding: 8px 0;
+    }
+    .intervention-suggestion i {
+        color: #E31E24;
         margin-right: 8px;
-        color: white;
+    }
+    
+    /* Download button text */
+    .download-text i {
+        margin-right: 8px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -398,11 +426,11 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         )
         st.dataframe(styled_df, use_container_width=True)
         
-        st.info("💡 **AI Intervention Suggestions:**")
+        st.info("💡 AI Intervention Suggestions:")
         for _, student in high_risk_students.head(3).iterrows():
             factors = dropout_predictor.get_risk_factors(student)
             message = generate_intervention_message(student, factors)
-            st.write(f"• **{student['name']}** (ID: {student['student_id']}): {message}")
+            st.markdown(f'<div class="intervention-suggestion"><i class="fas fa-chevron-right"></i> <b>{student["name"]}</b> (ID: {student["student_id"]}): {message}</div>', unsafe_allow_html=True)
     else:
         st.success("✅ No high risk students found! Great job!")
     
@@ -524,7 +552,7 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
             
             csv = feedback_df.to_csv(index=False)
             st.download_button(
-                label="📥 Download Feedback Summary (CSV)",
+                label='<i class="fas fa-download"></i> Download Feedback Summary (CSV)',
                 data=csv,
                 file_name=f"feedback_summary_{datetime.now().strftime('%Y%m%d')}.csv",
                 mime="text/csv"
@@ -789,21 +817,21 @@ def main():
             dropout_predictor.train(df)
         st.success("✅ Model siap digunakan!")
     
-    # Sidebar filters
-    st.sidebar.title("🎯 Filter Data")
+    # Sidebar filters - PROFESSIONAL ICONS
+    st.sidebar.title("<i class='fas fa-filter'></i> Filter Data")
     st.sidebar.markdown("---")
     
     courses = ['All'] + sorted(df['course'].unique().tolist())
-    selected_course = st.sidebar.selectbox("📚 Select Course", courses)
+    selected_course = st.sidebar.selectbox("<i class='fas fa-book'></i> Select Course", courses)
     
     risk_levels = ['All', 'High', 'Medium', 'Low']
-    selected_risk = st.sidebar.selectbox("⚠️ Risk Level", risk_levels)
+    selected_risk = st.sidebar.selectbox("<i class='fas fa-exclamation-circle'></i> Risk Level", risk_levels)
     
     cities = ['All'] + sorted(df['city'].unique().tolist())
-    selected_city = st.sidebar.selectbox("📍 City", cities)
+    selected_city = st.sidebar.selectbox("<i class='fas fa-map-marker-alt'></i> City", cities)
     
     st.sidebar.markdown("---")
-    st.sidebar.markdown("💡 **Powered by AI**")
+    st.sidebar.markdown("<i class='fas fa-microchip'></i> **Powered by AI**", unsafe_allow_html=True)
     
     # Apply filters
     filtered_df = df.copy()
@@ -823,8 +851,8 @@ def main():
     avg_progress = filtered_df['progress_rate'].mean() if total_students > 0 else 0
     avg_quiz = filtered_df['avg_quiz_score'].mean() if total_students > 0 else 0
     
-    # TABS: Dashboard | FAQ
-    tab1, tab2 = st.tabs(["📊 Dashboard", "❓ FAQ & Panduan"])
+    # TABS: Dashboard | FAQ - PROFESSIONAL ICONS
+    tab1, tab2 = st.tabs(["<i class='fas fa-chart-pie'></i> Dashboard", "<i class='fas fa-circle-question'></i> FAQ & Panduan"])
     
     with tab1:
         show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_students, high_risk, avg_progress, avg_quiz)
@@ -834,3 +862,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
