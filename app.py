@@ -10,7 +10,6 @@ warnings.filterwarnings('ignore')
 # Import custom modules
 from models.dropout_predictor import DropoutPredictor
 from models.sentiment_analyzer import SentimentAnalyzer
-from models.chatbot import StudentAssistantChatbot
 
 # Page configuration
 st.set_page_config(
@@ -129,21 +128,6 @@ st.markdown("""
         transform: scale(1.02);
     }
     
-    .chat-message-user {
-        background-color: #f0f0f0;
-        padding: 10px 14px;
-        border-radius: 12px;
-        margin: 5px 0;
-        border-left: 4px solid #E31E24;
-    }
-    .chat-message-bot {
-        background-color: #fff5f5;
-        padding: 10px 14px;
-        border-radius: 12px;
-        margin: 5px 0;
-        border-left: 4px solid #28a745;
-    }
-    
     .feedback-positive {
         background-color: #d4edda;
         padding: 8px 12px;
@@ -161,6 +145,42 @@ st.markdown("""
         padding: 8px 12px;
         border-radius: 8px;
         border-left: 4px solid #FF6B00;
+    }
+    
+    /* FAQ Styling */
+    .faq-item {
+        background: #f8f9fa;
+        padding: 16px 20px;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        border-left: 4px solid #E31E24;
+        transition: all 0.3s ease;
+    }
+    .faq-item:hover {
+        box-shadow: 0 2px 8px rgba(227, 30, 36, 0.15);
+        transform: translateX(4px);
+    }
+    .faq-question {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: #1a1a1a;
+        margin-bottom: 6px;
+    }
+    .faq-answer {
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .faq-category {
+        background: #E31E24;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 8px;
     }
     
     /* Tabs styling */
@@ -528,93 +548,114 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         else:
             st.write("Not enough data for course recommendations.")
 
-def show_chatbot(filtered_df, chatbot):
-    """Menampilkan halaman Chatbot"""
+def show_faq():
+    """Menampilkan halaman FAQ"""
     
-    st.markdown('<p class="main-header">🤖 AI Chatbot Assistant</p>', unsafe_allow_html=True)
-    st.markdown("Asisten belajar AI yang siap membantu 24/7")
+    st.markdown('<p class="main-header">❓ FAQ - Pusat Bantuan Belajar</p>', unsafe_allow_html=True)
+    st.markdown("Temukan jawaban atas pertanyaan yang paling sering ditanyakan seputar belajar di Quipper.")
     st.markdown("---")
     
-    col1, col2 = st.columns([2, 1])
-    
-    with col1:
-        if "chat_history" not in st.session_state:
-            st.session_state.chat_history = []
-            st.session_state.chat_history.append({
-                "role": "assistant",
-                "message": "Halo! Saya asisten belajar AI. Ada yang bisa saya bantu? 😊"
-            })
-        
-        # Display chat messages
-        for msg in st.session_state.chat_history:
-            if msg["role"] == "user":
-                st.markdown(f"""
-                <div class="chat-message-user">
-                    <b>🧑‍🎓 Kamu:</b> {msg['message']}
-                </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.markdown(f"""
-                <div class="chat-message-bot">
-                    <b>🤖 Bot:</b> {msg['message']}
-                </div>
-                """, unsafe_allow_html=True)
-        
-        if st.button("🔄 Clear Chat"):
-            st.session_state.chat_history = [{
-                "role": "assistant",
-                "message": "Halo! Saya asisten belajar AI. Ada yang bisa saya bantu? 😊"
-            }]
-    
-    with col2:
-        st.markdown("**💡 Quick Questions:**")
-        quick_questions = [
-            "Apa rekomendasi belajarku?",
-            "Bagaimana progress saya?",
-            "Semangat dong!",
-            "Materi Matematika",
-            "Terimakasih!"
-        ]
-        
-        for q in quick_questions:
-            if st.button(q, key=f"q_{q}"):
-                student_context = None
-                if not filtered_df.empty:
-                    high_risk = filtered_df[filtered_df['risk_category'] == 'High']
-                    if not high_risk.empty:
-                        student_context = high_risk.iloc[0].to_dict()
-                    else:
-                        student_context = filtered_df.iloc[0].to_dict()
-                
-                response = chatbot.get_response(q, student_context)
-                st.session_state.chat_history.append({"role": "user", "message": q})
-                st.session_state.chat_history.append({"role": "assistant", "message": response})
-    
+    # Search/Filter FAQ
+    search = st.text_input("🔍 Cari pertanyaan...", placeholder="Ketik kata kunci...")
     st.markdown("---")
     
-    user_input = st.text_input("Tanyakan sesuatu ke asisten belajar:", key="chat_input")
-    if st.button("Kirim") and user_input:
-        student_context = None
-        if not filtered_df.empty:
-            high_risk = filtered_df[filtered_df['risk_category'] == 'High']
-            if not high_risk.empty:
-                student_context = high_risk.iloc[0].to_dict()
-            else:
-                student_context = filtered_df.iloc[0].to_dict()
-        
-        response = chatbot.get_response(user_input, student_context)
-        st.session_state.chat_history.append({"role": "user", "message": user_input})
-        st.session_state.chat_history.append({"role": "assistant", "message": response})
+    # FAQ Data
+    faqs = [
+        {
+            "category": "📚 Jadwal Belajar",
+            "question": "Bagaimana cara membuat jadwal belajar yang efektif?",
+            "answer": "Kami merekomendasikan metode Pomodoro: belajar 25 menit, istirahat 5 menit. Lakukan 4-5 siklus per sesi. Prioritaskan materi yang sulit di pagi hari saat pikiran masih segar, dan gunakan jadwal yang konsisten setiap hari."
+        },
+        {
+            "category": "📚 Jadwal Belajar",
+            "question": "Berapa lama waktu ideal belajar per hari?",
+            "answer": "Untuk siswa SMA, waktu belajar ideal adalah 3-4 jam per hari di luar jam sekolah. Bisa dibagi menjadi 2 sesi: pagi (1.5 jam) dan sore/malam (1.5-2 jam). Jangan lupa istirahat setiap 45-60 menit."
+        },
+        {
+            "category": "📚 Jadwal Belajar",
+            "question": "Bagaimana cara belajar yang efektif untuk ujian?",
+            "answer": "1. Buat ringkasan materi, 2. Kerjakan soal-soal latihan tahun sebelumnya, 3. Gunakan teknik spaced repetition (ulangi materi secara berkala), 4. Diskusikan dengan teman untuk pemahaman yang lebih dalam, 5. Istirahat yang cukup sebelum ujian."
+        },
+        {
+            "category": "📖 Modul & Materi",
+            "question": "Di mana saya bisa mengakses semua modul pembelajaran?",
+            "answer": "Semua modul pembelajaran dapat diakses melalui dashboard Quipper School di menu 'Materi Belajar'. Modul tersedia dalam bentuk video, PDF, dan latihan interaktif. Pastikan Anda login dengan akun Quipper Anda."
+        },
+        {
+            "category": "📖 Modul & Materi",
+            "question": "Apakah ada modul untuk persiapan UTBK?",
+            "answer": "Ya! Quipper menyediakan paket khusus 'Quipper UTBK' yang berisi ribuan soal prediksi, tryout online, dan video pembahasan dari tutor berpengalaman. Akses melalui menu 'UTBK Center' di dashboard."
+        },
+        {
+            "category": "📖 Modul & Materi",
+            "question": "Bagaimana cara mendownload materi offline?",
+            "answer": "Untuk mendownload materi, buka modul yang diinginkan, klik tombol 'Download' (ikon panah ke bawah). File PDF atau video akan tersimpan di perangkat Anda. Materi yang sudah diunduh bisa diakses tanpa koneksi internet."
+        },
+        {
+            "category": "🎯 Rekomendasi Belajar",
+            "question": "Bagaimana cara mendapatkan rekomendasi materi yang sesuai?",
+            "answer": "AI Learning Analytics Dashboard akan menganalisis performa Anda dan memberikan rekomendasi materi yang sesuai. Cek bagian 'Rekomendasi Belajar' di dashboard utama atau minta saran dari mentor Anda."
+        },
+        {
+            "category": "🎯 Rekomendasi Belajar",
+            "question": "Materi apa yang sebaiknya saya pelajari pertama kali?",
+            "answer": "Mulailah dengan materi yang menjadi dasar (fundamental) untuk mata pelajaran yang Anda ambil. Contoh: untuk Matematika, kuasai aljabar dasar sebelum kalkulus. Dashboard akan menunjukkan area yang perlu Anda tingkatkan."
+        },
+        {
+            "category": "🎯 Rekomendasi Belajar",
+            "question": "Bagaimana cara meningkatkan nilai quiz saya?",
+            "answer": "1. Review materi sebelum quiz, 2. Kerjakan latihan soal tambahan, 3. Perhatikan feedback dari quiz sebelumnya, 4. Tonton ulang video pembahasan, 5. Catat kesalahan dan pelajari kembali konsep yang sulit. Konsistensi adalah kunci!"
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Bagaimana cara menghubungi mentor jika saya kesulitan?",
+            "answer": "Anda dapat menghubungi mentor melalui fitur chat di dashboard Quipper atau mengirim pesan langsung melalui menu 'Bantuan'. Mentor akan merespon dalam waktu 1x24 jam."
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Apa yang harus dilakukan jika modul tidak bisa diakses?",
+            "answer": "1. Periksa koneksi internet Anda, 2. Refresh halaman, 3. Coba gunakan browser lain (Chrome/Firefox), 4. Clear cache browser, 5. Jika masih bermasalah, hubungi tim teknis Quipper melalui menu 'Bantuan'."
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Bagaimana cara melaporkan bug atau error di platform?",
+            "answer": "Anda dapat melaporkan bug melalui menu 'Bantuan' → 'Laporkan Masalah'. Sertakan screenshot dan deskripsi detail masalah. Tim teknis akan segera menindaklanjuti dan memberikan solusi."
+        }
+    ]
     
-    st.markdown("---")
-    st.markdown("*💡 AI Chatbot Assistant - Siap membantu kapan saja!*")
+    # Filter FAQ berdasarkan search
+    if search:
+        search_lower = search.lower()
+        filtered_faqs = [f for f in faqs if search_lower in f['question'].lower() or search_lower in f['answer'].lower() or search_lower in f['category'].lower()]
+    else:
+        filtered_faqs = faqs
+    
+    # Tampilkan jumlah hasil
+    st.markdown(f"**{len(filtered_faqs)}** pertanyaan ditemukan")
+    
+    # Tampilkan FAQ berdasarkan kategori
+    if filtered_faqs:
+        categories = {}
+        for faq in filtered_faqs:
+            cat = faq['category']
+            if cat not in categories:
+                categories[cat] = []
+            categories[cat].append(faq)
+        
+        for category, items in categories.items():
+            st.markdown(f"### {category}")
+            for faq in items:
+                with st.expander(f"❓ {faq['question']}"):
+                    st.markdown(f"<div class='faq-answer'>{faq['answer']}</div>", unsafe_allow_html=True)
+            st.markdown("---")
+    else:
+        st.info("Tidak ada pertanyaan yang sesuai dengan pencarian Anda. Coba kata kunci lain.")
 
 def main():
     df = load_data()
     
     dropout_predictor = DropoutPredictor()
     sentiment_analyzer = SentimentAnalyzer()
-    chatbot = StudentAssistantChatbot()
     
     try:
         dropout_predictor.predict(df)
@@ -639,7 +680,7 @@ def main():
     st.sidebar.markdown("---")
     st.sidebar.markdown("💡 **Powered by AI**")
     
-    # Apply filters - DENGAN SAFETY CHECK
+    # Apply filters
     filtered_df = df.copy()
     if selected_course != 'All':
         filtered_df = filtered_df[filtered_df['course'] == selected_course]
@@ -648,7 +689,6 @@ def main():
     if selected_city != 'All':
         filtered_df = filtered_df[filtered_df['city'] == selected_city]
     
-    # Jika hasil filter kosong, tampilkan pesan dan gunakan data All
     if len(filtered_df) == 0:
         st.warning(f"⚠️ Tidak ada data untuk filter yang dipilih. Menampilkan semua data.")
         filtered_df = df.copy()
@@ -658,14 +698,14 @@ def main():
     avg_progress = filtered_df['progress_rate'].mean() if total_students > 0 else 0
     avg_quiz = filtered_df['avg_quiz_score'].mean() if total_students > 0 else 0
     
-    # TABS: Dashboard | Chatbot
-    tab1, tab2 = st.tabs(["📊 Dashboard", "🤖 Chatbot Assistant"])
+    # TABS: Dashboard | FAQ
+    tab1, tab2 = st.tabs(["📊 Dashboard", "❓ FAQ & Panduan"])
     
     with tab1:
         show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_students, high_risk, avg_progress, avg_quiz)
     
     with tab2:
-        show_chatbot(filtered_df, chatbot)
+        show_faq()
 
 if __name__ == "__main__":
     main()
