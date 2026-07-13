@@ -37,9 +37,9 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
-    /* Sidebar Styling - GELAP dengan teks PUTIH */
+    /* Sidebar Styling - MERAH TELKOM */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
         padding-top: 20px;
     }
     [data-testid="stSidebar"] * {
@@ -50,19 +50,15 @@ st.markdown("""
         font-weight: 600;
         font-size: 0.9rem;
     }
-    [data-testid="stSidebar"] .stSelectbox div {
-        color: white !important;
-    }
-    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] {
-        background-color: rgba(255,255,255,0.12) !important;
-        border-radius: 8px;
-        border: 1px solid rgba(255,255,255,0.2) !important;
-        color: white !important;
-    }
-    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]:hover {
+    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"] {
         background-color: rgba(255,255,255,0.2) !important;
+        border-radius: 8px;
+        border: 1px solid rgba(255,255,255,0.3) !important;
     }
-    [data-testid="stSidebar"] .stSelectbox [data-baseweb="select"] span {
+    [data-testid="stSidebar"] .stSelectbox div[data-baseweb="select"]:hover {
+        background-color: rgba(255,255,255,0.3) !important;
+    }
+    [data-testid="stSidebar"] .stSelectbox span {
         color: white !important;
     }
     [data-testid="stSidebar"] h1, 
@@ -238,7 +234,7 @@ def main():
             dropout_predictor.train(df)
         st.success("✅ Model siap digunakan!")
     
-    # Sidebar filters - GELAP dengan teks PUTIH
+    # Sidebar filters - MERAH TELKOM
     st.sidebar.title("🎯 Filter Data")
     st.sidebar.markdown("---")
     
@@ -365,9 +361,9 @@ def main():
         display_df = high_risk_students.head(10)[['student_id', 'name', 'course', 'risk_score', 'progress_rate', 'avg_quiz_score', 'days_active']].copy()
         display_df['risk_factors'] = risk_factors[:len(display_df)]
         
-        # TAMPILKAN TABEL DENGAN WARMA - hanya risk_score yang >70 berwarna merah
+        # PAKAI .map() BUKAN .applymap()
         st.dataframe(
-            display_df.style.applymap(
+            display_df.style.map(
                 lambda x: 'color: #E31E24; font-weight: bold;' if isinstance(x, (int, float)) and x > 70 else '',
                 subset=['risk_score']
             ),
