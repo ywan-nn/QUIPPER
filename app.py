@@ -20,10 +20,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS - MERAH TELKOM
+# Custom CSS
 st.markdown("""
 <style>
-    /* Header */
     .main-header {
         font-size: 2.5rem;
         color: #E31E24;
@@ -37,7 +36,6 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
-    /* Sidebar Styling - MERAH TELKOM */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
         padding-top: 20px;
@@ -74,7 +72,6 @@ st.markdown("""
         border-color: rgba(255,255,255,0.15);
     }
     
-    /* Metric Cards */
     .metric-card {
         background: #f8f9fa;
         padding: 15px 10px;
@@ -107,7 +104,6 @@ st.markdown("""
         margin-top: 2px;
     }
     
-    /* Risk Colors */
     .risk-high {
         color: #E31E24 !important;
     }
@@ -118,7 +114,6 @@ st.markdown("""
         color: #28a745 !important;
     }
     
-    /* Buttons */
     .stButton > button {
         background-color: #E31E24;
         color: white;
@@ -134,7 +129,6 @@ st.markdown("""
         transform: scale(1.02);
     }
     
-    /* Chat Messages */
     .chat-message-user {
         background-color: #f0f0f0;
         padding: 10px 14px;
@@ -150,7 +144,6 @@ st.markdown("""
         border-left: 4px solid #28a745;
     }
     
-    /* Feedback Cards */
     .feedback-positive {
         background-color: #d4edda;
         padding: 8px 12px;
@@ -168,6 +161,21 @@ st.markdown("""
         padding: 8px 12px;
         border-radius: 8px;
         border-left: 4px solid #FF6B00;
+    }
+    
+    /* Tabs styling */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 8px;
+    }
+    .stTabs [data-baseweb="tab"] {
+        border-radius: 8px 8px 0 0;
+        padding: 8px 20px;
+        font-weight: 600;
+        background-color: #f0f0f0;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #E31E24 !important;
+        color: white !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -201,42 +209,8 @@ def generate_intervention_message(student, risk_factors):
     
     return message
 
-def main():
-    df = load_data()
-    
-    dropout_predictor = DropoutPredictor()
-    sentiment_analyzer = SentimentAnalyzer()
-    chatbot = StudentAssistantChatbot()
-    
-    try:
-        dropout_predictor.predict(df)
-    except:
-        with st.spinner("⏳ Melatih model prediksi dropout..."):
-            dropout_predictor.train(df)
-        st.success("✅ Model siap digunakan!")
-    
-    st.sidebar.title("🎯 Filter Data")
-    st.sidebar.markdown("---")
-    
-    courses = ['All'] + sorted(df['course'].unique().tolist())
-    selected_course = st.sidebar.selectbox("📚 Select Course", courses)
-    
-    risk_levels = ['All', 'High', 'Medium', 'Low']
-    selected_risk = st.sidebar.selectbox("⚠️ Risk Level", risk_levels)
-    
-    cities = ['All'] + sorted(df['city'].unique().tolist())
-    selected_city = st.sidebar.selectbox("📍 City", cities)
-    
-    st.sidebar.markdown("---")
-    st.sidebar.markdown("💡 **Powered by AI**")
-    
-    filtered_df = df.copy()
-    if selected_course != 'All':
-        filtered_df = filtered_df[filtered_df['course'] == selected_course]
-    if selected_risk != 'All':
-        filtered_df = filtered_df[filtered_df['risk_category'] == selected_risk]
-    if selected_city != 'All':
-        filtered_df = filtered_df[filtered_df['city'] == selected_city]
+def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_students, high_risk, avg_progress, avg_quiz):
+    """Menampilkan halaman Dashboard"""
     
     col1, col2 = st.columns([2, 1])
     with col1:
@@ -246,10 +220,8 @@ def main():
     
     st.markdown("---")
     
-    total_students = len(filtered_df)
-    high_risk = len(filtered_df[filtered_df['risk_category'] == 'High'])
-    avg_progress = filtered_df['progress_rate'].mean()
-    avg_quiz = filtered_df['avg_quiz_score'].mean()
+    # KPI Metrics
+    st.subheader("📊 Key Performance Indicators")
     
     col1, col2, col3, col4 = st.columns(4)
     
@@ -486,31 +458,37 @@ def main():
     col1, col2 = st.columns(2)
     
     with col1:
-        fig5 = px.histogram(
-            filtered_df, 
-            x='progress_rate', 
-            title='Student Progress Distribution',
-            labels={'progress_rate': 'Progress (%)', 'count': 'Count'},
-            nbins=20,
-            color_discrete_sequence=['#4A90D9']
-        )
-        fig5.update_layout(height=350)
-        st.plotly_chart(fig5, use_container_width=True)
+        if len(filtered_df) > 0:
+            fig5 = px.histogram(
+                filtered_df, 
+                x='progress_rate', 
+                title='Student Progress Distribution',
+                labels={'progress_rate': 'Progress (%)', 'count': 'Count'},
+                nbins=20,
+                color_discrete_sequence=['#4A90D9']
+            )
+            fig5.update_layout(height=350)
+            st.plotly_chart(fig5, use_container_width=True)
+        else:
+            st.info("No data to display")
     
     with col2:
-        fig6 = px.scatter(
-            filtered_df, 
-            x='progress_rate', 
-            y='avg_quiz_score',
-            color='risk_category',
-            title='Quiz Score vs Progress',
-            labels={'progress_rate': 'Progress (%)', 'avg_quiz_score': 'Avg Quiz Score'},
-            color_discrete_map={'High': '#E74C3C', 'Medium': '#F39C12', 'Low': '#2ECC71'},
-            hover_data=['student_id', 'name'],
-            size='total_logins'
-        )
-        fig6.update_layout(height=350)
-        st.plotly_chart(fig6, use_container_width=True)
+        if len(filtered_df) > 0:
+            fig6 = px.scatter(
+                filtered_df, 
+                x='progress_rate', 
+                y='avg_quiz_score',
+                color='risk_category',
+                title='Quiz Score vs Progress',
+                labels={'progress_rate': 'Progress (%)', 'avg_quiz_score': 'Avg Quiz Score'},
+                color_discrete_map={'High': '#E74C3C', 'Medium': '#F39C12', 'Low': '#2ECC71'},
+                hover_data=['student_id', 'name'],
+                size='total_logins'
+            )
+            fig6.update_layout(height=350)
+            st.plotly_chart(fig6, use_container_width=True)
+        else:
+            st.info("No data to display")
     
     st.markdown("---")
     st.subheader("🤖 AI Learning Recommendations")
@@ -521,16 +499,17 @@ def main():
         st.markdown("**📊 Dashboard AI Insights:**")
         insights = []
         
-        if high_risk > total_students * 0.2:
+        if total_students > 0 and high_risk > total_students * 0.2:
             insights.append(f"⚠️ {high_risk/total_students*100:.1f}% of students are at high risk. Immediate intervention recommended.")
         
-        low_engagement = len(filtered_df[filtered_df['days_active'] < 7])
-        if low_engagement > total_students * 0.1:
-            insights.append(f"⚠️ {low_engagement} students have been inactive for over a week. Proactive engagement needed.")
-        
-        low_quiz = len(filtered_df[filtered_df['avg_quiz_score'] < 40])
-        if low_quiz > total_students * 0.1:
-            insights.append(f"⚠️ {low_quiz} students are struggling with quizzes. Additional support recommended.")
+        if total_students > 0:
+            low_engagement = len(filtered_df[filtered_df['days_active'] < 7])
+            if low_engagement > total_students * 0.1:
+                insights.append(f"⚠️ {low_engagement} students have been inactive for over a week. Proactive engagement needed.")
+            
+            low_quiz = len(filtered_df[filtered_df['avg_quiz_score'] < 40])
+            if low_quiz > total_students * 0.1:
+                insights.append(f"⚠️ {low_quiz} students are struggling with quizzes. Additional support recommended.")
         
         if not insights:
             insights = ["✅ All metrics are in good standing. Continue monitoring."]
@@ -546,11 +525,15 @@ def main():
             for _, row in course_avg_risk.head(3).iterrows():
                 if row['risk_score'] > 50:
                     st.write(f"• **{row['course']}**: High risk score ({row['risk_score']:.0f}). Review course content.")
+        else:
+            st.write("Not enough data for course recommendations.")
+
+def show_chatbot(filtered_df, chatbot):
+    """Menampilkan halaman Chatbot"""
     
+    st.markdown('<p class="main-header">🤖 AI Chatbot Assistant</p>', unsafe_allow_html=True)
+    st.markdown("Asisten belajar AI yang siap membantu 24/7")
     st.markdown("---")
-    
-    # Chatbot
-    st.subheader("🤖 AI Chatbot Assistant")
     
     col1, col2 = st.columns([2, 1])
     
@@ -562,6 +545,7 @@ def main():
                 "message": "Halo! Saya asisten belajar AI. Ada yang bisa saya bantu? 😊"
             })
         
+        # Display chat messages
         for msg in st.session_state.chat_history:
             if msg["role"] == "user":
                 st.markdown(f"""
@@ -606,6 +590,8 @@ def main():
                 st.session_state.chat_history.append({"role": "user", "message": q})
                 st.session_state.chat_history.append({"role": "assistant", "message": response})
     
+    st.markdown("---")
+    
     user_input = st.text_input("Tanyakan sesuatu ke asisten belajar:", key="chat_input")
     if st.button("Kirim") and user_input:
         student_context = None
@@ -621,7 +607,65 @@ def main():
         st.session_state.chat_history.append({"role": "assistant", "message": response})
     
     st.markdown("---")
-    st.markdown("*💡 Powered by AI Learning Analytics. Data updated in real-time.*")
+    st.markdown("*💡 AI Chatbot Assistant - Siap membantu kapan saja!*")
+
+def main():
+    df = load_data()
+    
+    dropout_predictor = DropoutPredictor()
+    sentiment_analyzer = SentimentAnalyzer()
+    chatbot = StudentAssistantChatbot()
+    
+    try:
+        dropout_predictor.predict(df)
+    except:
+        with st.spinner("⏳ Melatih model prediksi dropout..."):
+            dropout_predictor.train(df)
+        st.success("✅ Model siap digunakan!")
+    
+    # Sidebar filters
+    st.sidebar.title("🎯 Filter Data")
+    st.sidebar.markdown("---")
+    
+    courses = ['All'] + sorted(df['course'].unique().tolist())
+    selected_course = st.sidebar.selectbox("📚 Select Course", courses)
+    
+    risk_levels = ['All', 'High', 'Medium', 'Low']
+    selected_risk = st.sidebar.selectbox("⚠️ Risk Level", risk_levels)
+    
+    cities = ['All'] + sorted(df['city'].unique().tolist())
+    selected_city = st.sidebar.selectbox("📍 City", cities)
+    
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("💡 **Powered by AI**")
+    
+    # Apply filters - DENGAN SAFETY CHECK
+    filtered_df = df.copy()
+    if selected_course != 'All':
+        filtered_df = filtered_df[filtered_df['course'] == selected_course]
+    if selected_risk != 'All':
+        filtered_df = filtered_df[filtered_df['risk_category'] == selected_risk]
+    if selected_city != 'All':
+        filtered_df = filtered_df[filtered_df['city'] == selected_city]
+    
+    # Jika hasil filter kosong, tampilkan pesan dan gunakan data All
+    if len(filtered_df) == 0:
+        st.warning(f"⚠️ Tidak ada data untuk filter yang dipilih. Menampilkan semua data.")
+        filtered_df = df.copy()
+    
+    total_students = len(filtered_df)
+    high_risk = len(filtered_df[filtered_df['risk_category'] == 'High'])
+    avg_progress = filtered_df['progress_rate'].mean() if total_students > 0 else 0
+    avg_quiz = filtered_df['avg_quiz_score'].mean() if total_students > 0 else 0
+    
+    # TABS: Dashboard | Chatbot
+    tab1, tab2 = st.tabs(["📊 Dashboard", "🤖 Chatbot Assistant"])
+    
+    with tab1:
+        show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_students, high_risk, avg_progress, avg_quiz)
+    
+    with tab2:
+        show_chatbot(filtered_df, chatbot)
 
 if __name__ == "__main__":
     main()
