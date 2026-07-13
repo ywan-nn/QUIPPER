@@ -22,7 +22,6 @@ st.set_page_config(
 # Custom CSS
 st.markdown("""
 <style>
-    /* Header */
     .main-header {
         font-size: 2.5rem;
         color: #E31E24;
@@ -36,7 +35,6 @@ st.markdown("""
         margin-bottom: 20px;
     }
     
-    /* Sidebar Styling - SCROLLABLE */
     [data-testid="stSidebar"] {
         background: linear-gradient(180deg, #E31E24 0%, #B71C1C 100%);
         padding-top: 20px;
@@ -75,7 +73,6 @@ st.markdown("""
         border-color: rgba(255,255,255,0.15);
     }
     
-    /* Metric Cards */
     .metric-card {
         background: #f8f9fa;
         padding: 15px 10px;
@@ -108,7 +105,6 @@ st.markdown("""
         margin-top: 2px;
     }
     
-    /* Risk Colors */
     .risk-high {
         color: #E31E24 !important;
     }
@@ -119,7 +115,6 @@ st.markdown("""
         color: #28a745 !important;
     }
     
-    /* Buttons */
     .stButton > button {
         background-color: #E31E24;
         color: white;
@@ -135,7 +130,6 @@ st.markdown("""
         transform: scale(1.02);
     }
     
-    /* Feedback Cards */
     .feedback-positive {
         background-color: #d4edda;
         padding: 8px 12px;
@@ -155,7 +149,6 @@ st.markdown("""
         border-left: 4px solid #FF6B00;
     }
     
-    /* FAQ Styling */
     .faq-item {
         background: #f8f9fa;
         padding: 16px 20px;
@@ -191,7 +184,6 @@ st.markdown("""
         margin-bottom: 8px;
     }
     
-    /* Tabs styling */
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
     }
@@ -331,7 +323,6 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         for _, student in high_risk_students.head(10).iterrows():
             factors = dropout_predictor.get_risk_factors(student)
             risk_factors.append(', '.join(factors) if factors else 'Multiple risk indicators')
-            # Root cause analysis
             causes = []
             if student['days_active'] < 14:
                 causes.append("Low activity")
@@ -353,7 +344,6 @@ def show_dashboard(filtered_df, dropout_predictor, sentiment_analyzer, total_stu
         )
         st.dataframe(styled_df, use_container_width=True)
         
-        # FR-03: AI Intervention Suggestions
         st.info("💡 **AI Intervention Suggestions:**")
         for _, student in high_risk_students.head(3).iterrows():
             factors = dropout_predictor.get_risk_factors(student)
@@ -577,11 +567,9 @@ def show_faq():
     st.markdown("Temukan jawaban atas pertanyaan yang paling sering ditanyakan seputar platform Quipper dan AILA.")
     st.markdown("---")
     
-    # Search/Filter FAQ
     search = st.text_input("🔍 Cari pertanyaan...", placeholder="Ketik kata kunci...")
     st.markdown("---")
     
-    # FAQ Data - Lengkap
     faqs = [
         # === JADWAL BELAJAR ===
         {
@@ -609,7 +597,6 @@ def show_faq():
             "question": "Kapan waktu terbaik untuk belajar? Pagi atau malam?",
             "answer": "Setiap orang memiliki ritme yang berbeda. Namun secara umum, pagi hari (06.00-09.00) adalah waktu terbaik untuk belajar materi baru karena pikiran masih segar. Sore/malam (19.00-21.00) cocok untuk mengulang dan latihan soal. Temukan waktu yang paling produktif untuk Anda dan konsistenlah."
         },
-        
         # === MODUL & MATERI ===
         {
             "category": "📖 Modul & Materi",
@@ -641,7 +628,6 @@ def show_faq():
             "question": "Apa yang harus dilakukan jika video pembelajaran tidak bisa diputar?",
             "answer": "1. Periksa koneksi internet Anda, 2. Refresh halaman browser, 3. Coba gunakan browser lain (Chrome/Firefox direkomendasikan), 4. Clear cache browser, 5. Coba akses di jam yang berbeda (jika server sedang sibuk). Jika masih bermasalah, laporkan melalui menu 'Bantuan'."
         },
-        
         # === REKOMENDASI ===
         {
             "category": "🎯 Rekomendasi Belajar",
@@ -660,15 +646,9 @@ def show_faq():
         },
         {
             "category": "🎯 Rekomendasi Belajar",
-            "question": "Apakah AILA bisa memberikan rekomendasi jalur karir berdasarkan minat saya?",
-            "answer": "Saat ini AILA fokus pada rekomendasi belajar akademik. Namun ke depannya, kami berencana menambahkan fitur rekomendasi jalur karir berdasarkan minat, bakat, dan performa akademik. Untuk saat ini, Anda bisa berkonsultasi dengan mentor atau guru BK di sekolah Anda."
-        },
-        {
-            "category": "🎯 Rekomendasi Belajar",
             "question": "Bagaimana cara mengatasi rasa malas belajar?",
             "answer": "1. Mulai dari hal kecil - belajar 10 menit dulu, 2. Buat target yang realistis, 3. Beri reward setelah mencapai target, 4. Cari teman belajar untuk saling memotivasi, 5. Ubah mindset - belajar adalah investasi untuk masa depan, 6. Gunakan teknik Pomodoro untuk menjaga fokus, 7. Ingat tujuan akhir Anda."
         },
-        
         # === BANTUAN & DUKUNGAN ===
         {
             "category": "💬 Bantuan & Dukungan",
@@ -683,9 +663,20 @@ def show_faq():
         {
             "category": "💬 Bantuan & Dukungan",
             "question": "Bagaimana cara melaporkan bug atau error di platform Quipper?",
-            "answer": "Anda dapat melaporkan bug melalui: 1) Menu 'Bantuan' → 'Laporkan Masalah', 2) Email ke support@quipper.com dengan subjek 'Bug Report', 3) Chat dengan tim support di dashboard. Sertakan screenshot, deskripsi detail masalah, dan langkah-langkah yang menyebabkan error. Tim teknis akan segera menindaklanjuti."
+            "answer": "Anda dapat melaporkan bug melalui: 1) Menu 'Bantuan' -> 'Laporkan Masalah', 2) Email ke support@quipper.com dengan subjek 'Bug Report', 3) Chat dengan tim support di dashboard. Sertakan screenshot, deskripsi detail masalah, dan langkah-langkah yang menyebabkan error. Tim teknis akan segera menindaklanjuti."
         },
         {
             "category": "💬 Bantuan & Dukungan",
             "question": "Apakah Quipper menyediakan layanan konsultasi privat?",
-            "answer": "Ya, Quipper menyediakan layanan konsultasi privat dengan mentor berpengalaman. Anda bisa memilih jadwal dan topik yang ingin didiskusikan. Layanan ini tersedia melalui menu 'Konsultasi' di dashboard. Biaya
+            "answer": "Ya, Quipper menyediakan layanan konsultasi privat dengan mentor berpengalaman. Anda bisa memilih jadwal dan topik yang ingin didiskusikan. Layanan ini tersedia melalui menu 'Konsultasi' di dashboard. Biaya konsultasi bervariasi tergantung pada paket yang dipilih."
+        },
+        {
+            "category": "💬 Bantuan & Dukungan",
+            "question": "Bagaimana cara bergabung dengan komunitas belajar Quipper?",
+            "answer": "Anda bisa bergabung dengan komunitas belajar Quipper melalui: 1) Grup diskusi di forum Quipper, 2) Komunitas Telegram resmi Quipper, 3) Event webinar dan workshop yang diadakan secara rutin. Informasi lebih lanjut bisa dilihat di menu 'Komunitas' di dashboard utama."
+        },
+        # === AILA DASHBOARD ===
+        {
+            "category": "🤖 AILA Dashboard",
+            "question": "Apa itu AILA dan apa fungsinya?",
+            "answer": "AILA (AI Learning Analytics) adalah dashboard berbasis AI yang membantu tim Quipper memantau performa siswa secara real-time. Fungsinya: 1) Mendeteksi siswa berisiko dropout, 2) Menganalisis sentimen feedback, 3) Memberikan rekomendasi intervensi personal
